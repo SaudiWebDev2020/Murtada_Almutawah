@@ -1,0 +1,189 @@
+* {
+  /* Universal tracker */
+  /* border: yellow dashed 1px; */
+}
+
+.wrapper {
+  /* height: 100px; */
+  height: 1029px;
+  width: 970px;
+  margin: 0 auto;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgb(111, 89, 100),
+    rgb(111, 89, 100),
+    rgb(30, 14, 18)
+  ); /* W3C */
+  /* background-image: url("../images/portfolio_assignment.png");
+  background-repeat: no-repeat;
+  background-size: contain; */
+}
+
+.header {
+  background-color: white;
+  height: 60px;
+  /* opacity: 0.5; */
+  display: flex;
+  justify-content: space-between;
+  vertical-align: top;
+}
+
+.header h1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 10px;
+  padding-left: 20px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.header h3 {
+  padding-right: 30px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.intro {
+  height: 260px;
+  /* opacity: 0.5; */
+  padding: 20px 24px;
+}
+
+.picture {
+  display: inline-block;
+  vertical-align: top;
+  border: whitesmoke solid 5px;
+}
+
+.about {
+  background-image: linear-gradient(to right, white, rgb(218, 203, 217));
+
+  /* background-color: rgb(218, 203, 217); */
+  height: 271px;
+  width: 482px;
+  display: inline-block;
+  margin-left: 19px;
+}
+
+.about_title {
+  margin: 0;
+  padding: 6px 0 0 8px;
+  color: white;
+  height: 38px;
+  display: block;
+  background-image: linear-gradient(to top, lightgrey, grey, lightgrey);
+}
+
+.content {
+  margin: 0;
+  padding: 10px;
+  /* background-color: rgb(218, 203, 217); */
+  /* background-image: linear-gradient(to right, white, rgb(218, 203, 217)); */
+}
+
+.about_content a {
+  color: black;
+}
+
+.projects {
+  /* background-color: #888888; */
+  /* opacity: 0.5; */
+  height: 582px;
+  padding-top: 17px;
+  padding-left: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px;
+  /* padding-right: 3px; */
+}
+
+.project {
+  background-image: linear-gradient(to right, white, rgb(218, 203, 217));
+  /* background-color: rgb(218, 203, 217); */
+  height: 550px;
+  width: 286px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 11px 0 11px 0;
+}
+
+.project_title {
+  margin: 0;
+  padding: 6px 0 0 8px;
+  color: white;
+  align-content: center;
+  height: 33px;
+  /* background-color: rebeccapurple; */
+  /* display: block; */
+  background-image: linear-gradient(to top, lightgrey, grey, lightgrey);
+}
+
+.project_picture img {
+  /* display: block; */
+}
+
+.project_discription {
+  height: 131px;
+  /* background-color: grey; */
+  /* display: block; */
+  margin: 0;
+}
+
+.tech_title {
+  height: 30px;
+}
+
+.project_technologies {
+  height: 110px;
+  /* display: block; */
+}
+.project_technologies ul {
+  padding-left: 0px;
+  margin: 0;
+}
+.project_technologies li {
+  /* display: inline; */
+  /* justify-content: space-between; */
+}
+
+.project_technologies img {
+  /* display: inline-flex; */
+  /* justify-content: space-between; */
+  padding: 5px 5px;
+}
+
+.project_btn {
+  background-color: green;
+  border: black solid 2px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  padding: 3px;
+  /* margin: 0 auto; */
+}
+
+.footer {
+  background-color: white;
+  /* opacity: 0.3; */
+  height: 77px;
+}
+
+.footer p {
+  margin: 0;
+  text-align: center;
+  font-size: 18px;
+}
+.footer ul {
+  text-align: center;
+}
+.footer div {
+  text-align: center;
+}
+.footer li {
+  display: inline-flex;
+}
+
+.footer a {
+  color: black;
+}
