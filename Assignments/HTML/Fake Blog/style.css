@@ -1,0 +1,81 @@
+* {
+  font-family: "Courier New";
+}
+
+body {
+  height: 100vh;
+  background-color: antiquewhite;
+}
+
+table tbody tr:nth-of-type(even),
+thead tr {
+  background-color: lightgrey;
+}
+td {
+  width: 100px;
+}
+td:nth-of-type(odd) {
+  /* background-color: lightgrey;*/
+}
+
+.blog {
+  border: 1px solid black;
+  text-align: center;
+}
+
+#profile_picture {
+  height: 100px;
+  width: 100px;
+}
+
+ul {
+  justify-content: center;
+}
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.padder {
+  padding: 5px;
+}
+
+p {
+  margin: 30px;
+  font-size: 20px;
+  background-color: lightgrey;
+  border-right: 1px groove rgb(100, 100, 100);
+  border-left: 1px groove rgb(200, 200, 200);
+}
+.button {
+  border: 2px dotted green;
+  padding: 5;
+  font-size: 24px;
+  border-radius: 10px;
+  color: white;
+  background-color: blue;
+  float: right;
+}
+
+br {
+  margin: 2px;
+}
+
+a {
+  font-size: 20px;
+  font-weight: 300;
+  background-color: lightgrey;
+  display: block;
+}
+
+h1 span {
+  font-weight: bold;
+  color: blue;
+  font-style: italic;
+}

@@ -1,0 +1,15 @@
+
+> ls
+> cd Desktop
+> mkdir test
+> cd test
+> touch index.html style.css commands.txt
+> cp index.html index_2.html
+> cd ..
+> mkdir destination
+> mv test/index_2.html destination
+> rm test/style.css
+> ls test
+> ls destination
+> rm -rf destination
+> cat test/commands.txt
