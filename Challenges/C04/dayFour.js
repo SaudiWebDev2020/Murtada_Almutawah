@@ -9,24 +9,40 @@
 
 
 function rotateArr(arr, shiftBy) {
-    //
-    
+    // Rotate in negatve side is supported. 
+    // Memory wise it is efficent.
+    // Time wise it is not effiecent. 
+
     numOfroutations = shiftBy % arr.length;
     console.log("Rotate: ",numOfroutations);
-    for (var x = 0; x < numOfroutations; x++){
-
-        temp = arr[arr.length-1] 
-        for (var y = arr.length -1; y > 0 ; y--){
-            arr[y] = arr[y - 1];
+    
+    if (numOfroutations > 0) {
+        for (var x = 0; x < numOfroutations; x++) {
+            temp = arr[arr.length - 1]
+            for (var y = arr.length - 1; y > 0; y--) {
+                arr[y] = arr[y - 1];
+            }
+            arr[0] = temp;
         }
-        arr[0] = temp;
+    } else if (numOfroutations < 0) {
+        numOfroutations = numOfroutations * -1;
+            console.log("Rotate: ",numOfroutations);
+
+        for (var x = 0; x < numOfroutations; x++) {
+            temp = arr[0];
+            for (var y = 0; y < arr.length - 1; y++) {
+                arr[y] = arr[y+1];
+            }
+            arr[arr.length - 1] = temp;
+    }        
     }
 
     return arr;
 }
 
-arr3 = [0, 1, 2]
+arr3 = [0, 1, 2];
 console.log(rotateArr(arr3, 7));
+console.log(rotateArr(arr3, -2));
 console.log("Min = ",minOfSorted(arr3));
 
 
