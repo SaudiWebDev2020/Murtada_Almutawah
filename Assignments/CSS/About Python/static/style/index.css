@@ -1,0 +1,236 @@
+body * {
+  outline: red dashed 1px;
+  font-family: sans-serif;
+}
+
+.wrapper {
+  margin: 0 auto;
+  height: 810px;
+  width: 970px;
+  background-image: url("../images/python-BSD.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.intro {
+  /* height: 482px; */
+  background-color: rgb(37, 80, 118);
+  /* opacity: 0.5; */
+  box-shadow: 0px 2px 0 0 black;
+  margin-bottom: 2px;
+}
+
+.intro .header {
+  height: 125px;
+  /* background-color: black; */
+  display: flex;
+  justify-content: space-between;
+
+  /* opacity: 0.3; */
+}
+.header img {
+  padding-top: 15px;
+  padding-left: 30px;
+}
+
+.tools {
+  display: block;
+}
+
+.tools p {
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding-left: 20px;
+  font-size: 15px;
+  font-weight: 100;
+}
+
+.tools a {
+  color: rgb(251, 211, 68);
+  font-size: 13px;
+}
+.tools span {
+  color: black;
+}
+
+.tools .searchbox {
+  padding: 10px 40px 10px 35px;
+  background-color: #444444;
+  border-radius: 5px;
+  box-shadow: 2px 2px 0 black;
+  margin-right: 12px;
+}
+
+.searchbox input {
+  height: 30px;
+  width: 145px;
+  text-align: center;
+  margin-right: 5px;
+  border-style: inset;
+}
+
+.searchbox a {
+  text-decoration: none;
+  background-color: rgb(37, 80, 118);
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  border-style: outset;
+}
+
+.intro .menu {
+  height: 45px;
+  /* background-color: goldenrod; */
+  display: inline-flex;
+  margin-left: 83px;
+  margin-right: 40px;
+  min-width: 852px;
+}
+
+ul.menu {
+  border-radius: 5px;
+  box-shadow: 2px 2px 0 black;
+  padding-left: 0;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-decoration: none;
+  background-color: #487fad;
+  /* border: black solid 1px; */
+}
+
+.menu li {
+  font-size: 20px;
+  margin: auto;
+  display: inline-block;
+  color: white;
+}
+
+.intro .main-body {
+  height: 309px;
+  /* background-color: hotpink; */
+  /* opacity: 0.3; */
+  display: inline-flex;
+}
+.main-body .shortcuts {
+  /* background-color: black; */
+  width: 190px;
+  margin-left: 103px;
+  display: block;
+  text-align: center;
+}
+
+.shortcuts ul {
+  padding: 0;
+  list-style: none;
+}
+
+.shortcuts li {
+  padding: 5px;
+}
+
+.shortcuts li::before {
+  content: ">>";
+  color: rgb(251, 211, 68);
+}
+
+.shortcuts a {
+  color: white;
+}
+
+.main-body .about {
+  width: 650px;
+  color: white;
+  text-align: center;
+  /* padding: ; */
+}
+
+.about p {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.about ul {
+  list-style: none;
+  margin: 0;
+}
+
+.about li {
+  font-size: 22px;
+  padding-top: 4px;
+  color: rgb(251, 211, 68);
+}
+
+.cards {
+  height: 222px;
+  background-color: white;
+  /* opacity: 0.3; */
+}
+
+.cardTab:nth-child(odd) {
+  margin-left: 103px;
+}
+
+.cardTab {
+  border-top: #75a8d3 solid 5px;
+  display: inline-block;
+  vertical-align: top;
+  max-width: 400px;
+  min-height: 200px;
+  /* background-color: gray; */
+  /* opacity: 0.5; */
+  margin: 10px;
+}
+.card {
+  padding-top: 5px;
+  padding-right: 20%;
+  padding-left: 6px;
+  text-align: center;
+  color: black;
+  /* font-size: 15px; */
+
+  /* justify-content: space-around; */
+  /* padding-top: 10px; */
+  /* padding-right: 30%; */
+}
+.card a {
+  font-size: 12px;
+  color: #75a8d3;
+  text-decoration: none;
+}
+.card ul {
+  padding-top: 0px;
+  margin-top: 0px;
+  /* padding: 0 17%; */
+  padding: 0 55px;
+  /* margin: auto -15%; */
+}
+.card li {
+  list-style-type: square;
+}
+.card p {
+  /* padding-left: 5%; */
+  margin: 7px 0 0 0;
+  font-size: 15px;
+}
+
+.footer {
+  height: 100px;
+  background: linear-gradient(to bottom, #275278 0%, #3677ae 100%);
+  /* opacity: 0.3; */
+  color: white;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 10px;
+}
+
+.footer ul {
+  margin-top: 0px;
+}
+.footer li {
+  display: inline-flex;
+  padding: 50px 20px 0 20px;
+}
