@@ -1,0 +1,60 @@
+// This list of command that was entered in http://web.mit.edu/mprat/Public/web/Terminus/Web/main.html 
+
+
+
+>cd Lessons
+You have moved to Lessons. You enter the Lessons hall ready and eager. It's much quieter here, as many of the lessons have already 
+started. You quickly ushered into the Introductory Lesson, which already begun. You enter the class on the "Move Spell." 
+>ls
+ Locations: 
+
+ Items: 
+Professor
+>less Professor
+The professor is difficult to understand, but you pick up just enough to learn 3 things: 
+1. You can use 'mv' to move things in the world 
+2. You have to indicate the object and the new location (i.e.: mv OBJECT NEWLOCATION) 
+3. This spell will only work on certain objects, for example the PracticeDummy objects in the PracticeRoom 
+ 
+You did not pay enough attention to learn which types of objects are unmovable. Oh well, experimenting was always more of your style 
+anyways. But be careful! 
+>less Professor
+The professor is difficult to understand, but you pick up just enough to learn 3 things: 
+1. You can use 'mv' to move things in the world 
+2. You have to indicate the object and the new location (i.e.: mv OBJECT NEWLOCATION) 
+3. This spell will only work on certain objects, for example the PracticeDummy objects in the PracticeRoom 
+ 
+You did not pay enough attention to learn which types of objects are unmovable. Oh well, experimenting was always more of your style 
+anyways. But be careful! 
+>cd ..
+You have moved to SpellCastingAcademy. The halls are filled the hustle and bustle of academy students scurrying to and from classes. 
+The inside of the academy is as impressive as it is on the outside with a high ceiling and gothic arches, it seems even larger on the 
+inside. 
+>cd ..
+You have moved to WesternForest. You enter and travel deep into the forest. Eventually, the path leads to a clearing with a large 
+impressive building. A sign on it reads: Spell Casting Academy: The Elite School of Magic. 
+>ls
+ Locations: 
+SpellCastingAcademy
+ Items: 
+Sign
+BackSign
+>cd ..
+You have moved to Home. You are in the comfort of your own home.
+> ls
+Command '' not found in room 'Home'
+>ls
+ Locations: 
+WesternForest
+NorthernMeadow
+MIT
+ Items: 
+WelcomeLetter
+>cd MIT
+You have moved to MIT. You have arrived by magic carpet to MIT!
+>ls
+ Locations: 
+StataCenter
+AthenaCluster
+ Items: 
+AdmissionLetter
