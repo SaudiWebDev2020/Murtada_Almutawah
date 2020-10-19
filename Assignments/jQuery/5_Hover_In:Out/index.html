@@ -7,12 +7,18 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       $("document").ready(function () {
-        $("img").click(function () {
-          //   console.log("data-alt-src value is", $(this).attr("data-alt-src"));
-          var temp = $(this).attr("src");
-          $(this).attr("src", $(this).attr("data-alt-src"));
-          $(this).attr("data-alt-src", temp);
-        });
+        $("img").hover(
+          function () {
+            //   console.log("data-alt-src value is", $(this).attr("data-alt-src"));
+            var temp = $(this).attr("src");
+            $(this).attr("src", $(this).attr("data-alt-src"));
+            $(this).attr("data-alt-src", temp);
+          }
+          // ,function () {
+          //   //   console.log("data-alt-src value is", $(this).attr("data-alt-src"));
+          //   console.log("out");
+          // }
+        );
       });
     </script>
   </head>
