@@ -53,6 +53,15 @@
         height: 20px;
         position: absolute;
       }
+      div#ghost {
+        background-image: url("./static/images/ghost.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        width: 20px;
+        height: 20px;
+        position: absolute;
+      }
 
       #score {
         margin: 10px;
@@ -61,19 +70,42 @@
         width: 100px;
         color: blanchedalmond;
       }
+
+      #lifes {
+        margin: 10px;
+        padding: 10px;
+        border: blanchedalmond solid 1px;
+        width: 60px;
+        color: blanchedalmond;
+        display: inline-flex;
+      }
+      div.life {
+        /* margin: 10px; */
+        /* padding: 10px; */
+        width: 20px;
+        height: 20px;
+        background-image: url("./static/images/heart.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-size: 90%;
+      }
     </style>
   </head>
   <body>
     <div id="world"></div>
     <div id="pacman"></div>
+    <div id="ghost"></div>
     <div id="score"></div>
+    <div id="lifes"></div>
+
     <script>
       var world = [
         [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
         [2, 0, 1, 1, 1, 1, 1, 1, 3, 2],
         [2, 1, 2, 2, 1, 1, 2, 1, 1, 2],
         [2, 1, 2, 2, 1, 1, 2, 1, 1, 2],
-        [2, 1, 1, 1, 1, 1, 2, 1, 1, 2],
+        [2, 1, 1, 0, 1, 1, 2, 1, 1, 2],
         [2, 1, 1, 1, 1, 1, 2, 1, 1, 2],
         [2, 1, 2, 2, 1, 1, 2, 1, 1, 2],
         [2, 1, 2, 2, 1, 1, 2, 1, 1, 2],
@@ -86,7 +118,18 @@
         1: "coin",
         2: "brick",
         3: "cherry",
+        4: "ghost",
       };
+
+      var pacman = {
+        x: 1,
+        y: 1,
+        degree: 0,
+        life: 3,
+      };
+      var score = 0;
+
+      var ghost = { x: 3, y: 4 };
 
       function displayWorld() {
         var output = "";
@@ -101,15 +144,17 @@
         document.getElementById("world").innerHTML = output;
       }
 
-      var pacman = {
-        x: 1,
-        y: 1,
-        degree: 0,
-      };
-      var score = 0;
-
       function displayScore() {
         document.getElementById("score").innerText = score;
+      }
+
+      function displayLifes() {
+        // console.log(pacman.life);
+        var output = "";
+        for (var i = 0; i < pacman.life; i++) {
+          output += "<div class='life'></div>";
+        }
+        document.getElementById("lifes").innerHTML = output;
       }
 
       function displayPacman() {
@@ -119,8 +164,13 @@
         document.getElementById("pacman").style.top = pacman.y * 20 + "px";
       }
 
+      function displayGhost() {
+        document.getElementById("ghost").style.left = ghost.x * 20 + "px";
+        document.getElementById("ghost").style.top = ghost.y * 20 + "px";
+      }
+
       document.onkeydown = function (e) {
-        console.log(e.keyCode);
+        // console.log(e.keyCode);
         if (e.keyCode == 37) {
           // Left
           if (world[pacman.y][pacman.x - 1] != 2) {
@@ -147,13 +197,28 @@
           }
         }
 
+        if (pacman.y == ghost.y && pacman.x == ghost.x) {
+          if (pacman.life > 1) {
+            console.log("You lost a life");
+            pacman.life--;
+            pacman.x = 1;
+            pacman.y = 1;
+            init();
+            displayLifes();
+          } else {
+            pacman.life--;
+            displayLifes();
+            alert("You lost the game");
+            location.reload();
+          }
+        }
         if (world[pacman.y][pacman.x] == 1) {
           // console.log("There is a coins");
           world[pacman.y][pacman.x] = 0;
           score += 10;
           displayScore();
           displayWorld();
-        } else if (world[pacman.y][pacman.x] == 1) {
+        } else if (world[pacman.y][pacman.x] == 3) {
           world[pacman.y][pacman.x] = 0;
           score += 50;
           displayScore();
@@ -164,14 +229,27 @@
       };
 
       function init() {
+        displayLifes();
         displayScore();
         displayWorld();
         displayPacman();
+        displayGhost();
       }
 
       init();
 
-      // TODO [ ] (Optional) Get a ghost to show up (the ghost does not have to move yet). When PacMan meets the ghost, have PacMan lose its life.
+      function gameLoop() {
+        // Moving the ghost
+        // drawPlayer();
+        // moveMissiles();
+        // drawMissiles();
+        // moveEnemies();
+        // drawEnemies();
+
+        setTimeout(gameLoop, 10);
+      }
+      // gameLoop();
+      // DONE (Optional) Get a ghost to show up (the ghost does not have to move yet). When PacMan meets the ghost, have PacMan lose its life.
       // TODO [ ] (Optional) Get the ghost to move around in random directions.
       // TODO [ ] (Optional) Get two PacMans to show up and move! (use one keyboard to move 2 PacMans)
     </script>
