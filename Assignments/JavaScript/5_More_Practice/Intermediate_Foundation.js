@@ -85,7 +85,7 @@ function nthToLast(arr,n) {
 
 function secondLargest(arr) {
     if (arr.length > 1) {
-        arr.sort(function(a,b){return a-b});
+        arr.sort(function (a, b) { return a - b;});
         return arr[arr.length - 2];
     } else {
         return null;
