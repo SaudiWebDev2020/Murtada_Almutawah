@@ -18,7 +18,7 @@ function rotateArr(arr, shiftBy) {
     
     if (numOfroutations > 0) {
         for (var x = 0; x < numOfroutations; x++) {
-            temp = arr[arr.length - 1]
+            temp = arr[arr.length - 1];
             for (var y = arr.length - 1; y > 0; y--) {
                 arr[y] = arr[y - 1];
             }
@@ -28,10 +28,10 @@ function rotateArr(arr, shiftBy) {
         numOfroutations = numOfroutations * -1;
             console.log("Rotate: ",numOfroutations);
 
-        for (var x = 0; x < numOfroutations; x++) {
+        for (var n = 0; n < numOfroutations; n++) {
             temp = arr[0];
-            for (var y = 0; y < arr.length - 1; y++) {
-                arr[y] = arr[y+1];
+            for (var m = 0; m < arr.length - 1; m++) {
+                arr[m] = arr[m+1];
             }
             arr[arr.length - 1] = temp;
     }        
