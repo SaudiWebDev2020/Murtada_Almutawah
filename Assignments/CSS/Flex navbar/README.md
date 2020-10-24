@@ -18,5 +18,7 @@
 
 You can download the Dojo icon [here](https://s3.amazonaws.com/General_V88/boomyeah2015/codingdojo/curriculum/content/chapter/dojo-icon.png).
 
-- [ ] Use the supplied HTML code snippets to recreate the images using flex.
-- [ ] (optional) Use google font Montserrat
+- [T] Use the supplied HTML code snippets to recreate the images using flex.
+- [T] (optional) Use google font Montserrat
+
+Note: I solved both part in one file. :#
