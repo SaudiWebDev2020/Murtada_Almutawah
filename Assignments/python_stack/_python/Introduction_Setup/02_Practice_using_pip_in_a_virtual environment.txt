@@ -1,0 +1,26 @@
+
+1. > pip list
+    It shows all installed packages within the environment boundaries
+2. > deactivate 
+    It gets me out of the environment
+3. > pip3 list
+    It shows all installed packages within the environment boundaries for python3.
+4. > source ./py3Env/bin/activate
+    It activate the environment to be in use.
+5. > pip install Django==2.2.4
+    It installing Django with spicific version and its dependences.
+6. > pip freeze
+    It show a result similar to list but without main packages. It shows what have been installed by me after creating the vertual environment. 
+7. > cd ~/Desktop then >  pip freeze > requirements.txt
+    It saves a copy of all installed packages in a file called requirements.txt
+    ```
+    Django==2.2.4
+    pytz==2020.1
+    sqlparse==0.4.1
+    ```
+8. > pip uninstall Django
+    It will uninstall Django only
+9. > pip show Django 
+    No result was shown
+10. > pip search Flask
+    It shows results of searching for Flask in form of name of the packages and descriptions
