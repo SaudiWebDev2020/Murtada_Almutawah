@@ -3,7 +3,7 @@
 // Given an array of interfers containing duplicates,return the majority element in the array if Present.
 // Input = [2,8,7,2,2,5,2,3,1,2,2]
 // Output = 2
-// TODO 2) We can use objects where the key will be the number and the value is the number of times it is found. 
+// Another sulotuin 2) We can use objects where the key will be the number and the value is the number of times it is found. 
 
 function MostFrequentNumber(arr) {
     var newArr=[];
@@ -27,8 +27,39 @@ function MostFrequentNumber(arr) {
     console.log(arr[index]);
 }
 
-var testArr = [1,1,1,3, 1, 8, 7, 2, 2, 5, 2, 3, 1, 2, 2];
-MostFrequentNumber(testArr);
+// DONE: Another Solution using object to store the key & value which will solve the duplication issue in the first solution. 
+
+function MostFrequentNumberUsingObject(arr) {
+    var tempObj = {};
+    for (var i = 0; i < arr.length; i++){
+        counter = 1;
+        for (var j = i + 1; j < arr.length; j++){
+            if (arr[i] === arr[j]) {
+                counter++;
+            }
+        }
+        if (tempObj[arr[i]] < counter || tempObj[arr[i]] == undefined) {
+            tempObj[arr[i]] = counter;
+        }
+    }
+    // console.log(tempObj);
+
+    index = 0;
+    var max;
+    for (var item in tempObj) {
+        if (tempObj[item] > max || max == undefined) {
+            index = item;
+            max = tempObj[item];
+        }
+        // console.log('key',tempObj[item],max);
+    }
+    console.log('number',index,":",tempObj[index]);
+}
+
+
+var testArr = [-1,-1,-1,3, -1, -1, 8, 7, 2, 2, 5, 2, 3, -1, 2, 2];
+// MostFrequentNumber(testArr);
+MostFrequentNumberUsingObject(testArr);
 
 // Number of Steps to Reduce a Number to Zero
 // // ------------------------------------------------------------------------
