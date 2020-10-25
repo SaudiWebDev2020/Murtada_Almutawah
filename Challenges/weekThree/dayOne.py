@@ -1,4 +1,4 @@
-# 3!/usr/bin/python3
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
 # Test if it is python 2 or python 3
@@ -37,8 +37,6 @@ print(arrs2Map(testArr1, testArr2))
 # You will need to learn and use a JavaScript for ... in h ere!
 # Clarifying Question ! do you want me to return the same object or return another solution.
 
-# TODO Edit the same arr ?
-
 
 def invertHash(obj):
     newObj = {}
@@ -47,11 +45,19 @@ def invertHash(obj):
     return newObj
 
 
+# DONE Edit the same arr but the variable did not update him self
+
+def invertHash2(obj):
+    obj = {value: key for key, value in obj.items()}
+    # print(obj)
+    return obj
+
+
 testObj = {"name": "Zaphod", "numHeads": 2}
 print(testObj)
 print(invertHash(testObj))
-
-# print(invertHash2(testObj))
+print(invertHash2(testObj))
+print(testObj)
 
 # ReverseString
 # ----------------------------------------------------------------------------------------------------------------
@@ -60,11 +66,11 @@ print(invertHash(testObj))
 # reverse() function!
 
 
-# FIXME Backword
+# DONE Backword
 def reverseString(givenStr):
     newStr = ""
-    for c in givenStr:
-        newStr += c
+    for i in range(len(givenStr)-1, -1, -1):
+        newStr += givenStr[i]
     return newStr
 
 
