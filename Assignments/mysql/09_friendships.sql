@@ -39,28 +39,49 @@ from friendships.friendships;
         left join friendships.friendships as friends_to on friends_to.friend_id = users.id
 		group by users.id;
 
- 		select *
-		from friendships.users
-		left join friendships.friendships on friendships.user_id = users.id
-        left join friendships.friendships as friends_to on friends_to.friend_id = users.id;
+-- -- -- -- -- Sum is here. 
 
- 		select *
-		from friendships.friendships f1
-		left join friendships.users as my_friends on f1.user_id = my_friends.id
-        left join friendships.users as friends_to on f1.friend_id = friends_to.id;
+		select u.id,(IFNULL((select COUNT(*)
+				from friendships.friendships
+				left join friendships.users on friendships.friend_id = users.id
+				where u.id = users.id
+				group by users.id),0) +
+				IFNULL((select COUNT(*)
+				from friendships.friendships
+				left join friendships.users on friendships.user_id = users.id
+				where u.id = users.id
+				group by users.id
+				),0)) as 'my_friends'
+		from friendships.users u;
 
- 		select *
-		from friendships.users me
-		left join friendships.friendships as my_friends on my_friends.user_id = me.id
-        left join friendships.users as friends_to on my_friends.friend_id = friends_to.id;
-
- 		select *
-		from friendships.friendships 
-		right join friendships.users as my_friends on friendships.user_id = my_friends.id
-        left join friendships.friendships as friends_to on friends_to.friend_id = my_friends.id;
+-- 		select u.id,(select COUNT(*)
+-- 				from friendships.friendships
+-- 				left join friendships.users on friendships.friend_id = users.id
+-- 				where u.id = users.id
+-- 				group by users.id),
+-- 				(select COUNT(*)
+-- 				from friendships.friendships
+-- 				left join friendships.users on friendships.user_id = users.id
+-- 				where u.id = users.id
+-- 				group by users.id
+-- 				)
+-- 		from friendships.users u;
 
 -- 3. Find out who has the most friends and return the count of their friends.
 -- TODO -
+
+-- 		select u.id,MAX((IFNULL((select COUNT(*)
+-- 				from friendships.friendships
+-- 				left join friendships.users on friendships.friend_id = users.id
+-- 				where u.id = users.id
+-- 				group by users.id),0) +
+-- 				IFNULL((select COUNT(*)
+-- 				from friendships.friendships
+-- 				left join friendships.users on friendships.user_id = users.id
+-- 				where u.id = users.id
+-- 				group by users.id
+-- 				),0))) as 'my_friends'
+-- 		from friendships.users u;
 
 -- 4. Create a new user and make them friends with Eli Byers, Kermit The Frog, and Marky Mark
 -- new user insertion 
