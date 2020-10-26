@@ -9,30 +9,30 @@ class User:		# here's what we have so far
     def make_deposit(self, amount):  # takes an argument that is the amount of the deposit
         # the specific user's account increases by the amount of the value received
         self.account_balance += amount
+        return self
 
     def make_withdrawal(self, amount):
         if (amount < self.account_balance):
             self.account_balance -= amount
-            return True
         else:
             print(
                 f'Sorry: {self.name}, requested amount is more than your balance.')
-            return False
+        return self
 
     def display_user_balance(self):
         print(f'User: {self.name}, Balance: ${self.account_balance}')
+        return self
 
     def transfer_money(self, other_user, amount):
-        transferred = self.make_withdrawal(amount)
-        if (transferred):
+        if (amount < self.account_balance):
             other_user.make_deposit(amount)
-            return True
         else:
             print(
                 f'Sorry: {self.name}, requested amount is more than your balance.')
-            return False
+        return self
 
-            # Create 3 instances of the User class
+
+        # Create 3 instances of the User class
 guido = User("Guido van Rossum", "guido@python.com")
 monty = User("Monty Python", "monty@python.com")
 murtada = User("Murtada Almutawah", "MAMutawah@gmail.com")
@@ -69,8 +69,16 @@ murtada.make_withdrawal(200)
 murtada.display_user_balance()
 
 print('-'*90)
+print('Transfer 100 from murtada to monty: ')
 murtada.display_user_balance()
 monty.display_user_balance()
 monty.transfer_money(murtada, 100)
 murtada.display_user_balance()
 monty.display_user_balance()
+
+print('-'*90)
+print('Chaining Methods: ')
+# Chaining Methods
+murtada.make_deposit(50).make_deposit(
+    50).make_deposit(50).display_user_balance()
+print('-'*90)
