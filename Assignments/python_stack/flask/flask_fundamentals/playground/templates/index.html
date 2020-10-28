@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        border: red dashed 1px;
+      }
+      h1 {
+        text-align: center;
+      }
+      .container {
+        display: inline-flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin: auto;
+      }
+      .box {
+        margin: 10px;
+        height: 200px;
+        width: 200px;
+        background-color: cornflowerblue;
+        border: black solid 1px;
+        display: inline-flex;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome!</h1>
+    <div class="container">
+      {% for i in range(num_box) %}
+      <div
+        class="box"
+        {%
+        if
+        box_color
+        %}
+        style="background-color:{{ box_color }};"
+        {%
+        endif
+        %}
+      ></div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
