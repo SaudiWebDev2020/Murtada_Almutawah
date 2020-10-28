@@ -20,7 +20,7 @@ def say_somthing(something):
 
 @app.route('/repeat/<int:times>/<string:something>')
 def repeat_somthing(something, times):
-    return f"{something} {times} times"
+    return f"{something} "*times
 
 
 @app.errorhandler(404)
