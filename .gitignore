@@ -1,3 +1,6 @@
+# Spicified locations
+my_environments/
+
 # Logs
 logs
 *.log
