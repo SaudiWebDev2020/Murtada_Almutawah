@@ -8,15 +8,18 @@
     <!-- choose a theme file -->
     <link
       rel="stylesheet"
-      href="{{url_for('static', filename='css/theme.default.css')}}"
+      href="{{url_for('static', filename='css/theme.materialize.min.css')}}"
     />
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-      crossorigin="anonymous"
-    />
+    <!-- load jQuery and tablesorter scripts -->
+    <script
+      type="text/javascript"
+      src="{{url_for('static', filename='js/jquery-3.5.1.js')}}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{url_for('static', filename='js/jquery.tablesorter.js')}}"
+    ></script>
     <style>
       table {
         border-collapse: collapse;
@@ -30,7 +33,7 @@
     </style>
   </head>
   <body>
-    <table id="myTable" class="tablesorter">
+    <table id="myTable" class="tablesorter-materialize">
       <thead>
         <th>First Name</th>
         <th>Last Name</th>
@@ -47,15 +50,6 @@
       </tbody>
     </table>
 
-    <!-- load jQuery and tablesorter scripts -->
-    <script
-      type="text/javascript"
-      src="{{url_for('static', filename='js/jquery-3.5.1.js')}}"
-    ></script>
-    <script
-      type="text/javascript"
-      src="{{url_for('static', filename='js/jquery.tablesorter.js')}}"
-    ></script>
     <script>
       $(function () {
         $("#myTable").tablesorter();
