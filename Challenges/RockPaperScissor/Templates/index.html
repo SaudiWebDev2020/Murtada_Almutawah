@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        text-align: center;
+        background-color: lightyellow;
+      }
+      #grey {
+        width: 200px;
+        height: 200px;
+        border: 2px solid black;
+        background-color: lightgrey;
+        padding: 20px;
+        margin: 20px;
+        display: inline-block;
+      }
+      #lightblue {
+        width: 200px;
+        height: 200px;
+        border: 2px solid black;
+        background-color: lightblue;
+        padding: 20px;
+        margin: 20px;
+        display: inline-block;
+      }
+      #lightgreen {
+        width: 200px;
+        height: 200px;
+        border: 2px solid black;
+        background-color: lightgreen;
+        padding: 20px;
+        margin: 20px;
+        display: inline-block;
+        background-image: url("/Static/img/rock.png");
+      }
+      table,
+      th {
+        border: 1px solid black;
+        background-color: white;
+      }
+      .score {
+        float: right;
+        margin-right: 20px;
+      }
+      a,
+      a:visited {
+        text-decoration: none;
+      }
+      .container {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div id="grey">
+        <img
+          src="{{url_for('static', filename='img/scissors.png')}}"
+          alt=""
+          width="200"
+          height="200"
+        />
+      </div>
+      <div id="lightblue">
+        <img
+          src="{{url_for('static', filename='img/rock.png')}}"
+          alt=""
+          width="200"
+          height="200"
+        />
+      </div>
+      <div id="lightgreen">
+        <img
+          src="{{url_for('static', filename='img/paper.png')}}"
+          alt=""
+          width="200"
+          height="200"
+        />
+      </div>
+    </div>
+    <h3>Pick one:</h3>
+    <form action="/" method="post">
+      <select name="myChoice">
+        <option value="rock" name="rock">Rock</option>
+        <option value="paper" name="paper">Paper</option>
+        <option value="scissor" name="scissors">Scissor</option>
+      </select>
+      <button>Go</button>
+    </form>
+    <div class="container">
+      <div class="result">
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <h3>{{ message }}</h3>
+        {% endfor %} {% endif %} {% endwith %}
+      </div>
+      <div class="score">
+        <table>
+          <tr>
+            <th>Status</th>
+            <th>Count</th>
+          </tr>
+
+          <tr>
+            <td>wins</td>
+            <td>{{ wins }}</td>
+          </tr>
+          <tr>
+            <td>Losses</td>
+            <td>{{losses}}</td>
+          </tr>
+          <tr>
+            <td>Ties</td>
+            <td>{{ ties }}</td>
+          </tr>
+        </table>
+        <a href="/reset">Reset</a>
+      </div>
+    </div>
+  </body>
+</html>
