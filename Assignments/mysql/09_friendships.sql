@@ -4,7 +4,7 @@
 -- Please also write the SQL queries needed to perform the following tasks:
 
 -- 1. Return all users who are friends with Kermit, make sure their names are displayed in results.
--- TODO mergie frind first name with first name + frind last name with last name
+-- PARTLY DONE mergie frind first name with first name + frind last name with last name
 
 select users.first_name,users.last_name,friend.first_name as 'friend_first_name',friend.last_name as 'friend_last_name'
 from friendships.users
@@ -14,12 +14,9 @@ where users.first_name = 'Kermit'
 or friend.first_name = 'Kermit';
 
 -- 2. Return the count of all friendships
--- TODO 
 
 -- show me all my friends and count them !
 
-select *
-from friendships.friendships;
 
 -- -- find number of friends to
 		select users.id,COUNT(*) as 'friends_to'
@@ -54,34 +51,39 @@ from friendships.friendships;
 				),0)) as 'my_friends'
 		from friendships.users u;
 
--- 		select u.id,(select COUNT(*)
--- 				from friendships.friendships
--- 				left join friendships.users on friendships.friend_id = users.id
--- 				where u.id = users.id
--- 				group by users.id),
--- 				(select COUNT(*)
--- 				from friendships.friendships
--- 				left join friendships.users on friendships.user_id = users.id
--- 				where u.id = users.id
--- 				group by users.id
--- 				)
--- 		from friendships.users u;
+-- -- -- -- -- testing perpose.
+ 
+		select u.id,concat_ws(" ",u.first_name,u.last_name) as "name",(select COUNT(*)
+				from friendships.friendships
+				left join friendships.users on friendships.friend_id = users.id
+				where u.id = users.id
+				group by users.id),
+				(select COUNT(*)
+				from friendships.friendships
+				left join friendships.users on friendships.user_id = users.id
+				where u.id = users.id
+				group by users.id
+				)
+		from friendships.users u;
 
 -- 3. Find out who has the most friends and return the count of their friends.
--- TODO -
+--  PARTLY DONE it needs to show the other most if it is equels the most
 
--- 		select u.id,MAX((IFNULL((select COUNT(*)
--- 				from friendships.friendships
--- 				left join friendships.users on friendships.friend_id = users.id
--- 				where u.id = users.id
--- 				group by users.id),0) +
--- 				IFNULL((select COUNT(*)
--- 				from friendships.friendships
--- 				left join friendships.users on friendships.user_id = users.id
--- 				where u.id = users.id
--- 				group by users.id
--- 				),0))) as 'my_friends'
--- 		from friendships.users u;
+		select u.id,concat_ws(" ",u.first_name,u.last_name) as "name" ,MAX((IFNULL((select COUNT(*)
+				from friendships.friendships
+				left join friendships.users on friendships.friend_id = users.id
+				where u.id = users.id
+				group by users.id),0) +
+				IFNULL((select COUNT(*)
+				from friendships.friendships
+				left join friendships.users on friendships.user_id = users.id
+				where u.id = users.id
+				group by users.id
+				),0))) as 'my_friends'
+		from friendships.users u
+        group by u.id
+        order by my_friends desc
+        LIMIT 1;
 
 -- 4. Create a new user and make them friends with Eli Byers, Kermit The Frog, and Marky Mark
 -- new user insertion 
@@ -102,7 +104,7 @@ insert into friendships.friendships (user_id,friend_id,created_at)
 select * from friendships.friendships;
 
 -- 5. Return the friends of Eli in alphabetical order
--- TODO mergie frind first name with first name + frind last name with last name
+-- PARTLY DONE mergie frind first name with first name + frind last name with last name
 
 select users.first_name,users.last_name,friend.first_name as 'friend_first_name',friend.last_name as 'friend_last_name'
 from friendships.users
