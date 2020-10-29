@@ -36,7 +36,6 @@
         padding: 20px;
         margin: 20px;
         display: inline-block;
-        background-image: url("/Static/img/rock.png");
       }
       table,
       th {
@@ -53,6 +52,9 @@
       }
       .container {
         display: inline-block;
+      }
+      h4 {
+        display: inline;
       }
     </style>
   </head>
@@ -83,22 +85,15 @@
         />
       </div>
     </div>
-    <h3>Pick one:</h3>
     <form action="/" method="post">
+      <h4>Pick one:</h4>
+
       <select name="myChoice">
         <option value="rock" name="rock">Rock</option>
         <option value="paper" name="paper">Paper</option>
         <option value="scissor" name="scissors">Scissor</option>
       </select>
       <button>Go</button>
-    </form>
-    <div class="container">
-      <div class="result">
-        {% with messages = get_flashed_messages() %} {% if messages %} {% for
-        message in messages %}
-        <h3>{{ message }}</h3>
-        {% endfor %} {% endif %} {% endwith %}
-      </div>
       <div class="score">
         <table>
           <tr>
@@ -120,6 +115,14 @@
           </tr>
         </table>
         <a href="/reset">Reset</a>
+      </div>
+    </form>
+    <div class="container">
+      <div class="result">
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <h3>{{ message }}</h3>
+        {% endfor %} {% endif %} {% endwith %}
       </div>
     </div>
   </body>
