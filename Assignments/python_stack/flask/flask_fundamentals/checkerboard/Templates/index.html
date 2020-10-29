@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .row {
+        display: flex;
+      }
+      div.one,
+      div.two {
+        height: 20px;
+        width: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      {% for row in arr_map %}
+      <div class="row" style="width: {{arr_map[0]|length * 20}}px">
+        {% for item in row %} {% if item % 2 == 0 %}
+        <div class="one" style="background-color: {{first_color}};"></div>
+        {% else %}
+        <div class="two" style="background-color: {{second_color}};"></div>
+        {% endif %} {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
