@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href=" {{ url_for('static',filename='style.css' )}} "
+    />
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td class="header" colspan="2">Submitted Info</td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td>{{name}}</td>
+      </tr>
+
+      <tr>
+        <td>Dojo Location:</td>
+        <td>{{dojo_location}}</td>
+      </tr>
+
+      <tr>
+        <td>Favorite Language:</td>
+        <td>{{favorite_language}}!!!</td>
+      </tr>
+
+      <tr>
+        <td>Comment:</td>
+        <td>{{comment}}</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <button><a href="/">Go Back</a></button>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

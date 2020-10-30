@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href=" {{ url_for('static',filename='style.css' )}} "
+    />
+  </head>
+  <body>
+    <form action="/result" method="post">
+      <table>
+        <tr>
+          <td>Your Name:</td>
+          <td><input type="text" name="your_name" required /></td>
+        </tr>
+        <tr>
+          <td>Dojo Location:</td>
+          <td>
+            <select name="dojo_location">
+              <option value="San Jose">San Jose</option>
+              <option value="New York">New York</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Favorite Language:</td>
+          <td>
+            <select name="favorite_language">
+              <option value="Python">Python</option>
+              <option value="Java">Java</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">Comment (optional):</td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <textarea name="comment" cols="40" rows="10"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><button>Button</button></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
