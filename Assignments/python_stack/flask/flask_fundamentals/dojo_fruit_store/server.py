@@ -30,7 +30,10 @@ def checkout():
 
 @app.route('/fruits')
 def fruits():
-    return render_template("fruits.html")
+    # DONE return fruits with pre defined list =).!
+    fruits = ['Apple', 'Blackberry', 'Raspberry',
+              'Strawberry']
+    return render_template("fruits.html", fruitsList=fruits)
 
 
 if __name__ == "__main__":
