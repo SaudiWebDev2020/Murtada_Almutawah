@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .countener {
+        display: block;
+        margin: 100px auto;
+        text-align: center;
+      }
+
+      .options {
+        display: inline-flex;
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="countener">
+      <h1>Counter</h1>
+      <p>{{counter}} times</p>
+
+      <div class="options">
+        <form action="/add_two" method="post">
+          <button class="btn btn-danger m-1">Add two visits!</button>
+        </form>
+        <form action="/destroy_session" method="post">
+          <button class="btn btn-warning m-1">Reset</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
