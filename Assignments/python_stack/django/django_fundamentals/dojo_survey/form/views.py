@@ -17,6 +17,9 @@ def process_form(request):
         'dojo_location': request.POST['dojo_location'],
         'favorite_language': request.POST['favorite_language'],
         'comment': request.POST['comment'],
+        'hobbies': request.POST.getlist('hobbies'),
     }
+    print(request.POST.getlist('hobbies'))
+    # print(context['hobbies'].getlist())
 
     return render(request, 'result.html', context)

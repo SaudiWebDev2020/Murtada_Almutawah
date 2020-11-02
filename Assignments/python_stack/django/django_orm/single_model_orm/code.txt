@@ -1,0 +1,31 @@
+>>> from users_app.models import *
+
+# Query: Create 3 new users
+>>> Users.objects.create(first_name="Murtada",last_name="Almutawah",email="M@m.com",age=25)
+>>> Users.objects.create(first_name="Murtada",last_name="Almutawah",email="M@m.com",age=25)
+>>> Users.objects.create(first_name="Sultan",last_name="Algezany",email="sa@m.com",age=23)
+>>> Users.objects.create(first_name="mroooj",last_name="felemban",email="sa@m.com",age=23)
+
+# Query: Retrieve all the user
+>>> Users.objects.all()
+# Query: Retrieve the last user
+>>> Users.objects.last()
+# Query: Retrieve the first user
+>>> Users.objects.first()
+
+# Query: Change the user with id=3 so their last name is Pancakes.
+>>> user3 = Users.objects.get(id=3)
+>>> user3.last_name = "Pancakes"
+>>> user3.save
+
+# Query: Delete the user with id=2 from the database
+>>> d = Users.objects.get(id=2)
+>>> d.delete()
+# in one line
+>>> Users.objects.get(id=6).delete()
+
+# Query: Get all the users, sorted by their first name
+>>> Users.objects.all().order_by("first_name")
+
+# BONUS Query: Get all the users, sorted by their first name in descending order
+>>> Users.objects.all().order_by('-first_name')
