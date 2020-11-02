@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    {% load static %}
+
+    <link rel="stylesheet" href=" {% static 'style.css' %} " />
+  </head>
+  <body>
+    <h1>
+      <form action="/result" method="post">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td>Your Name:</td>
+            <td><input type="text" name="your_name" required /></td>
+          </tr>
+          <tr>
+            <td>Dojo Location:</td>
+            <td>
+              <select name="dojo_location">
+                <option value="San Jose">San Jose</option>
+                <option value="New York">New York</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Favorite Language:</td>
+            <td>
+              <select name="favorite_language">
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">Comment (optional):</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <textarea name="comment" cols="40" rows="10"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"><button>Button</button></td>
+          </tr>
+        </table>
+      </form>
+    </h1>
+  </body>
+</html>
