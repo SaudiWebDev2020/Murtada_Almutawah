@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <style>
+      .box {
+        overflow-y: scroll;
+        height: 400px;
+        display: block;
+      }
+      .box p {
+        margin: 0;
+      }
+      .win {
+        color: green;
+      }
+      .loss {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container p-2">
+      <div class="row mt-2 align-middle">
+        <h5>Your Gold:</h5>
+        <input
+          name="current_balance"
+          value="{{gold_balance}}"
+          readonly="readonly"
+        />
+      </div>
+      <div class="row mt-2 mb-2">
+        {% for option in options %}
+        <div class="card text-center" style="width: 18rem">
+          <div class="card-body">
+            <form action="/process_money" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="card_id" value="{{option.op_id}}" />
+              <h5 class="card-title">{{option.name}}</h5>
+              <p class="card-text">
+                (earn {{option.min}} - {{option.max}} golds)
+              </p>
+              <button class="btn btn-primary">Find Gold</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <h5>Activities:</h5>
+      <div class="row box mt-2 p-2 border">
+        {%for value,className in massages reversed%}
+        <p class="{{className}}">{{value}}</p>
+        {%endfor%}
+      </div>
+    </div>
+  </body>
+</html>
