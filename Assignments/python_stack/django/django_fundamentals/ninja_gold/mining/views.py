@@ -3,7 +3,7 @@ import random
 from datetime import datetime
 
 # If it is DONE change TODO To DONE
-# TODO Move the step counter into process_money
+# DONE Move the step counter into process_money
 # TODO Edit the template to fit the new requirements
 # TODO Setup list of challenges
 # TODO Set up a way to select challenge.
@@ -23,47 +23,37 @@ options.append({'op_id': 3, 'name': 'Casino', 'min': 0,
 
 
 def index(request):
-
-    # Set Up for challenge
+    # Check if goal set ? 
+    request.session.setdefault('set_goal', False)
+    request.session.setdefault('reach_goal', False)
+    request.session.setdefault('gold_goal', 0)
+    request.session.setdefault('times_goal', 0)
+    request.session.setdefault('statement_goal', ("",""))
     request.session.setdefault('num_step', 0)
-    request.session.setdefault('goal', 100)
+    
 
     # Set Up Ballance & massages
     request.session.setdefault('balance', 0)
     request.session.setdefault('massages', [])
 
-    if 'num_step' in request.session:
-        request.session['num_step'] += 1
-        if request.session['num_step'] >= 10:
-            print('lose')
-            request.session.clear()
-            return redirect('/')
-        if request.session['balance'] >= request.session['goal']:
-            print('win')
-            request.session.clear()
-            return redirect('/')
-
-    print(
-        f"number of steps {request.session['num_step']}, {request.session['balance']}")
 
     context = {
         'gold_balance': request.session['balance'],
         'options': options,
         'massages': request.session['massages'],
+        'count': request.session['num_step'],
+        'set_goal': request.session['set_goal'],
+        'gold_goal': request.session['gold_goal'],
+        'times_goal': request.session['times_goal'],
+        'statement_goal': request.session['statement_goal'],
     }
-    # 'messages': request.session['massages'],
-
-    # name, min, max, (possible operation)
-
     return render(request, 'index.html', context)
-    # def destroy(request):
-    # del request.session['counter']
-    # return redirect('/')
 
 
 def process_money(request):
-    # print('process money method')
-    # print(request.POST['card_id'])
+    # TODO Count the number of clicks
+    request.session['num_step'] += 1
+
     operation_id = int(request.POST['card_id'])
 
     string = f''
@@ -85,7 +75,26 @@ def process_money(request):
         string += f"Entered a {options[operation_id]['name']} and lost {amount} golds... Ouch..({currentTime})"
         className = 'loss'
 
+
+    if (request.session['reach_goal'] is False):
+        if request.session['balance'] >= request.session['gold_goal']:
+            print("Goal Achieved")
+            request.session['statement_goal'] = (f"You won. Set another goal.","win")
+            request.session['reach_goal'] = True
+            
+        
+        if 'num_step' in request.session:
+            if request.session['num_step'] >= request.session['times_goal']:
+                request.session['statement_goal'] =  (f"You lost. Set another goal.","loss")
+                request.session['reach_goal'] = True
+            
+
+    # if request.session['balance'] >= request.session['goal']:
+    #     if request.session['goal'] == 100:
+
+    
     print(string)
+    print(request.session['statement_goal'])
     request.session['massages'].append((string, className))
     return redirect('/')
 
@@ -125,16 +134,27 @@ def selectOperation(operations):
 '''
 
 
-win_conditions = []
-win_conditions.append({'num_step': 10, 'goal': 500})
-#    win_conditions.append({ 'num_step': 10,'goal': 500})
+def challenge(request):
+
+    request.session.setdefault('statement_goal', ("",""))
+    request.session.setdefault('num_step', 0)
 
 
-# def conditions(request):
-#     # request.session.setdefault('balance', 0)
-#     if 'num_step' in request.session:
-#         request.session['num_step'] += 1
-#         if request.session['num_step'] == 10:
-#             print('lose')
 
-#     return redirect('/')
+    # Set Up for challenge
+    request.session['gold_goal'] = int(request.POST['gold_goal_entry'])
+    request.session['times_goal'] = int(request.POST['times_goal_entry'])
+    request.session['set_goal'] = True
+    request.session['reach_goal'] = False
+    request.session['statement_goal'] = ("Try to win your goal","")
+    
+    
+    # Reset Counter & balance & massages
+    request.session['num_step'] = 0
+    request.session['balance'] = 0
+    request.session['massages'] = []
+    
+    
+    print(request.POST,request.session['set_goal'])
+
+    return redirect('/')
