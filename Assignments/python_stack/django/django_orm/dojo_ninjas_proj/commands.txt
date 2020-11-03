@@ -1,0 +1,48 @@
+# Run the shell and import your models	
+>>> from dojo_ninjas_app.models import Dojo,Ninja
+
+# Query: Create 3 new dojos	
+>>> Dojo.objects.create(name="Power", city="New York", state="USA")
+>>> Dojo.objects.create(name="Power", city="Tulsa", state="USA")
+>>> Dojo.objects.create(name="Main", city="LA", state="USA")
+
+# Query: Delete the 3 dojos you just created	
+>>> Dojo.objects.first().delete()
+>>> Dojo.objects.first().delete()
+>>> Dojo.objects.first().delete()
+
+# Query: Create 3 more dojos
+>>> Dojo.objects.create(name="Black", city="New York", state="USA")
+>>> Dojo.objects.create(name="Yallew", city="New York", state="USA")
+>>> Dojo.objects.create(name="Saudi", city="New York", state="USA")
+
+# Query: Create 3 ninjas that belong to the first dojo	
+>>> Ninja.objects.create(first_name="Murtada" , last_name="Almutawah" ,dojo=Dojo.objects.first())
+>>> Ninja.objects.create(first_name="Ali" , last_name="Almutawah" ,dojo=Dojo.objects.first())
+>>> Ninja.objects.create(first_name="Hassan" , last_name="Almousa" ,dojo=Dojo.objects.first())
+
+# Query: Create 3 ninjas that belong to the second dojo	
+>>> secondDojo = Dojo.objects.all()[1]
+>>> Ninja.objects.create(first_name="Ebtehal" , last_name="Al Taleb" ,dojo=secondDojo)
+>>> Ninja.objects.create(first_name="Nourah" , last_name="Al qahtany" ,dojo=secondDojo)
+>>> Ninja.objects.create(first_name="Mohammed" , last_name="Al qahtany" ,dojo=secondDojo)
+
+# Query: Create 3 ninjas that belong to the third dojo	
+>>> Ninja.objects.create(first_name="Atheer" , last_name="Al musallum" ,dojo=Dojo.objects.last())
+>>> Ninja.objects.create(first_name="Khaled" , last_name="Al musallum" ,dojo=Dojo.objects.last())
+>>> Ninja.objects.create(first_name="Ziad" , last_name="Al asker" ,dojo=Dojo.objects.last())
+
+# Query: Retrieve all the ninjas from the first dojo	
+>>> Dojo.objects.first().Ninjas.all()
+
+# Query: Retrieve all the ninjas from the last dojo	
+>>> Dojo.objects.last().Ninjas.all()
+
+# Query: Retrieve the last ninja's dojo	
+>>> Dojo.objects.last().Ninjas.last()
+
+# Add a new text field called "desc" to your Dojo class	
+# Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"	
+
+# Query: Create a new dojo	
+>>> Dojo.objects.create(name='Michil' , city='LA' , state='USA', desc="New dojo")
