@@ -1,0 +1,88 @@
+# Create and run the migration files to create the tables in your database	
+# Create a .txt file where you'll save each of your queries from below	
+>>> from books_authors_app.models import Book,Author
+
+
+# Query: Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby	
+>>> Book.objects.create(title="C Sharp",desc="")
+>>> Book.objects.create(title="Java",desc="")
+>>> Book.objects.create(title="Python",desc="")
+>>> Book.objects.create(title="PHP",desc="")
+>>> Book.objects.create(title="Ruby",desc="")
+
+# Query: Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevsky, William Shakespeare, Lau Tzu	
+>>> Author.objects.create(first_name="Jane",last_name="Austen")
+>>> Author.objects.create(first_name="Emily",last_name="Dickinson")
+>>> Author.objects.create(first_name="Fyodor",last_name="Dostoevsky")
+>>> Author.objects.create(first_name="William",last_name="Shakespeare")
+>>> Author.objects.create(first_name="Lau",last_name="Tzu")
+
+# Add a new text field in the authors table called 'notes'.	
+# Create and run the migration files to update the table in your database.	
+# Query: Change the name of the C Sharp book to C#	
+>>> edit_book = Book.objects.get(title="C Sharp")
+>>> edit_book.title = "C#"
+>>> edit_book.save()
+
+# Query: Change the first name of the 4th author to Bill	
+>>> forth_author = Author.objects.all()[3]
+>>> forth_author.first_name = 'Bill'
+>>> forth_author.save()
+
+# Query: Assign the first author to the first 2 books	
+>>> first_author = Author.objects.first()
+>>> first_author.books.add(Book.objects.first())
+>>> first_author.books.add(Book.objects.all()[1])
+>>> first_author.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>]>
+
+# Query: Assign the second author to the first 3 books	
+>>> second_author = Author.objects.all()[1]
+>>> second_author.books.add(Book.objects.all()[0])
+>>> second_author.books.add(Book.objects.all()[1])
+>>> second_author.books.add(Book.objects.all()[2])
+>>> second_author.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>]>
+
+# Query: Assign the third author to the first 4 books	
+>>> third_author = Author.objects.all()[2]
+>>> third_author.books.add(Book.objects.all()[0])
+>>> third_author.books.add(Book.objects.all()[1])
+>>> third_author.books.add(Book.objects.all()[2])
+>>> third_author.books.add(Book.objects.all()[3])
+>>> third_author.books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+
+# Query: Assign the fourth author to the first 5 books (or in other words, all the books)	
+>>> Author.objects.all()[3].books.add(Book.objects.all()[0])
+>>> Author.objects.all()[3].books.add(Book.objects.all()[1])
+>>> Author.objects.all()[3].books.add(Book.objects.all()[2])
+>>> Author.objects.all()[3].books.add(Book.objects.all()[3])
+>>> Author.objects.all()[3].books.add(Book.objects.all()[4])
+>>> Author.objects.all()[3].books.add(Book.objects.all()[4])
+>>> Author.objects.all()[3].books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>, <Book: Book object (5)>]>
+
+# Query: Retrieve all the authors for the 3rd book	
+>>> Book.objects.all()[2].authors.all()
+<QuerySet [<Author: Author object (2): Name=Emily Dickinson >, <Author: Author object (3): Name=Fyodor Dostoevsky >, <Author: Author object (4): Name=Bill Shakespeare >]>
+
+# Query: Remove the first author of the 3rd book	
+>>> Book.objects.all()[2].authors.remove(Book.objects.all()[2].authors.first())
+>>> Book.objects.all()[2].authors.all()
+<QuerySet [<Author: Author object (3): Name=Fyodor Dostoevsky >, <Author: Author object (4): Name=Bill Shakespeare >]>
+
+# Query: Add the 5th author as one of the authors of the 2nd book	
+>>> Book.objects.all()[1].authors.add(Author.objects.all()[4])
+>>> Author.objects.all()[4].books.all()
+<QuerySet [<Book: Book object (2)>]>
+
+# Query: Find all the books that the 3rd author is part of	
+>>> Author.objects.all()[2].books.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+
+# Query: Find all the authors that contributed to the 5th book
+>>> Book.objects.all()[4].authors.all()
+<QuerySet [<Author: Author object (4): Name=Bill Shakespeare >]>
+
+# Submit your .txt file that contains all the queries you ran in the shell	
