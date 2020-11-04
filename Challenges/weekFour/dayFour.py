@@ -18,9 +18,8 @@ def removeNegatives(sllist):
 # Create partition(ListNode, value) that locates the first node with that value, and moves all nodes with values less than that value to be earlier, and all nodes with values greater than that value to be later.  Otherwise, original order need not ve perfectly preserved. return the new head ListNode.
 
 '''
-Problems
+TODO Problems 
 1. If there is a duplicate less value in the linked list
-
 '''
 
 def partition(ListNode, value):
@@ -67,7 +66,7 @@ if __name__ == "__main__":
     my_empty_list = SLList()
     my_single_list = SLList().addFront(-1).addBack(2)
     my_list = SLList().addFront(1).addBack(2).addFront(-1).addBack(-2).addBack(-2)
-    my_list_center = SLList().addFront(11).addBack(2).addFront(6).addBack(7).addBack(3).addBack(4).addBack(10).addBack(1).addBack(4)
+    my_list_center = SLList().addFront(11).addBack(2).addFront(6).addBack(7).addBack(3).addBack(4).addBack(10).addBack(1).addBack(20).addBack(5)
     
     
     print(display(my_empty_list.head))
@@ -84,7 +83,7 @@ if __name__ == "__main__":
     
     
     print(display(my_list_center.head))
-    partition2(my_list_center,4)
+    partition(my_list_center,10)
     print(display(my_list_center.head))
     
     
