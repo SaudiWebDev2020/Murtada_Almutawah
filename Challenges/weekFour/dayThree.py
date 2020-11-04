@@ -10,9 +10,9 @@ from dayTwo import display
 
 def removeVal(list, value):
     # print(display(list.head), value)
-    if (my_list.head == None):
+    if (list.head == None):
         pass
-    elif (my_list.head.value == value):
+    elif (list.head.value == value):
         list.removeFront()
     else:
         index = list.head.next
