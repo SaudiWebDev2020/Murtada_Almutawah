@@ -4,26 +4,90 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
     <style>
-      .welcome {
-        text-align: center;
+      .box {
+        border: 3px solid black;
+        margin: 20px auto;
+        width: 300px;
+        height: 300px;
+        display: flex;
       }
-      form {
-        text-align: center;
+      .red {
+        background-color: #cf2a27;
+      }
+      .green {
+        background-color: #009e0f;
+      }
+      .box .inside {
+        margin: auto;
+        color: white;
+        padding: 0 20%;
+      }
+
+      input {
+        margin: 10px;
       }
     </style>
   </head>
   <body>
-    <div class="welcome">
-      <h1>Welcome to the Great Number Game!</h1>
-      <p>I am thinking of a number between 1 and 100</p>
-      <p>Take a guess!</p>
-    </div>
+    <div class="container text-center mt-3">
+      <div>
+        <h1>Welcome to the Great Number Game!</h1>
+        <p>I am thinking of a number between 1 and 100</p>
+        <p>Take a guess!</p>
+      </div>
+      {% if result == 'equal' %}
+      <div class="box green">
+        <div class="inside">
+          <form action="/new_game" method="post">
+            <h2>{{random_number}} was the number!</h2>
+            <p>
+              It took you {{guess}} times <br />
+              to get it right
+            </p>
+            <button class="btn btn-primary">Play Again!</button>
+          </form>
+        </div>
+      </div>
+      {% elif result == 'too_low' %}
+      <div class="box red">
+        <div class="inside">
+          <h1>Too low!</h1>
+        </div>
+      </div>
+      {% elif result == 'too_high' %}
+      <div class="box red">
+        <div class="inside">
+          <h1>Too high!</h1>
+        </div>
+      </div>
+      {% endif %} {% if result != 'equal' %}
+      <form action="/guess" method="POST">
+        <input type="number" name="number" required />
+        <br />
+        <button class="btn btn-primary">Submit</button>
+      </form>
+      {% elif session.saved_record == False %}
+      <form action="/submit_name" method="POST">
+        <input type="text" name="name" required placeholder="Enter your name" />
+        <br />
+        <button class="btn btn-primary">Submit</button>
+      </form>
 
-    <form action="/guess" method="POST">
-      <input type="number" name="number" required />
-      <br />
-      <button>Submit</button>
-    </form>
+      {% else %}
+      <h3>Your result has been saved</h3>
+
+      {% endif %}
+      <div class="mt-3">
+        <a href="/leaderboard">View the leaderboard</a>
+      </div>
+    </div>
   </body>
 </html>
