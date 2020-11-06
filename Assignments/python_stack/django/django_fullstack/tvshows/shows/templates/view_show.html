@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container mt-3">
+      <div class="row align-middle">
+        <h1 class="w-75">Tv show {{show.id}}</h1>
+        <a class="w-25 text-right pt-3" href="{% url 'shows_list' %}"
+          >Go Back</a
+        >
+      </div>
+      <div class="row mt-3">
+        <p class="w-100" class="w-100" for="title">Title: {{show.title}}</p>
+        <p class="w-100" for="network">Network: {{show.network}}</p>
+        <p class="w-100" for="release_date">
+          Release Date: {{show.release_date}}
+        </p>
+        <p class="w-100" for="description">Description: {{show.description}}</p>
+        <p class="w-100 mt-5" for="updated_at">
+          Last Updated: {{show.updated_at|date:"F d, Y g:i A"}}
+        </p>
+        <p class="w-100" for="actions">
+          <a href="{% url 'edit_show' show_id=show.id %}">Edit</a> |
+          <a href="{% url 'delete_show' show_id=show.id %}">Delete</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
