@@ -79,17 +79,30 @@ class sList:
 
     def remove_val(self, val):
         '''
-        TODO
+        DONE
         - remove the first node with the given value
         Consider the following cases:
         the node with the given value is the first node
         the node with the given value is in the middle of the list
         the node with the given value is the last node'''
-        pass
+        if (self.head == None):
+            pass
+        elif (self.head.value == val):
+            self.remove_from_front()
+        else:
+            index = self.head.next
+            pre_index = self.head
+            while (index):
+                if(index.value == val):
+                    # print("found", index.value, pre_index.value)
+                    pre_index.next = index.next
+                    break
+                index = index.next
+                pre_index = pre_index.next
 
     def insert_at(self, val, n):
         '''
-        TODO
+        DONE
         - insert a node with value val as the nth node in the list
 
         Consider the following cases:
@@ -97,13 +110,39 @@ class sList:
         n is the length of the list
         n is between 0 and the length of the list
         '''
-        pass
 
-    # TODO SENSEI BONUS: consider and account for edge cases for all previous methods
+        # print(f'{val} will be in {n} at SLL of size {self.length()}')
+        count = 0
+        if(n is 0):
+            self.add_to_front(val)
+        elif(0 < n < self.length()):
+            pre_index = self.head
+            while count < n-1:
+                # print('Middle', count, pre_index.value)
+                count += 1
+                pre_index = pre_index.next
+            new_node = SLNode(val)
+            new_node.next = pre_index.next
+            pre_index.next = new_node
+        elif(n == self.length()):
+            self.add_to_back(val)
+        else:
+            print("Out of range")
+
+    # DONE SENSEI BONUS: consider and account for edge cases for all previous methods
+
+    def length(self):
+        count = 0
+        index = self.head
+        while (index):
+            count += 1
+            index = index.next
+        return count
 
 
 if __name__ == "__main__":
     my_list = sList()
+    '''
     print('-' * 90)
     print('# add to back if empty')
     my_list.add_to_back('Murtada')
@@ -138,3 +177,36 @@ if __name__ == "__main__":
     my_list.add_to_back('Jim').print_values()
     print("Is Jim in the list: ", my_list.container('Jim'))
     print('-' * 90)
+    print("Remove a single value: ")
+    my_list.remove_val('Jim')
+    my_list.print_values()
+    print('-' * 90)
+    print("Remove a Not found value: ")
+    my_list.remove_val('Jim')
+    print('-' * 90)
+    my_list.add_to_front('Jim').add_to_front(
+        'Dwight').add_to_front('Andy').print_values()
+    my_list.remove_val('Dwight')
+    print("Remove from the middle value: ")
+    my_list.print_values()
+    print('-' * 90)
+    print("Remove from the end value: ")
+    my_list.remove_val('Jim')
+    my_list.print_values()
+    '''
+    print('-' * 90)
+    print('# add to index 0')
+    my_list.insert_at('Ali', 0)
+    my_list.print_values()
+    print('-' * 90)
+    print('# add to index 2 (Last)')
+    my_list.insert_at('Andy', 1)
+    my_list.insert_at('Murtada', 2)
+    my_list.print_values()
+    print('-' * 90)
+    print('# add to 2 index')
+    # my_list.insert_at('Kharem', 10)
+    my_list.insert_at('Kharem', 2)
+    my_list.insert_at('Sami', 2)
+    print('-' * 90)
+    my_list.print_values()
