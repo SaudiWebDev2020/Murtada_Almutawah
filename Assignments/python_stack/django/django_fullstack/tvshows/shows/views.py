@@ -1,6 +1,9 @@
 from django.shortcuts import redirect, render
 from .models import Show
+
+from django.contrib import messages
 # Create your views here.
+
 
 
 def add_show(request):
@@ -12,9 +15,20 @@ def add_show(request):
 def create_show(request):
     # DONE
     # print(request.POST)
-    Show.objects.create(title=request.POST['title'], network=request.POST['network'],
-                        release_date=request.POST['release_date'], description=request.POST['description'])
-    return redirect(view_show, Show.objects.last().id)
+
+    if request.method == 'POST':
+        errors = Show.objects.validate(request.POST)
+        if len(errors) < 1:
+            Show.objects.create(title=request.POST['title'], network=request.POST['network'],
+                                release_date=request.POST['release_date'], description=request.POST['description'])
+            return redirect(view_show, Show.objects.last().id)
+        else:
+            print(errors)
+            for key, value in errors.items():
+                messages.error(request, value)
+
+    # TODO redirct and save context into _old_post
+    return render(request, 'new_show.html', context={})
 
 
 def view_show(request, show_id):
@@ -43,15 +57,28 @@ def edit_show(request, show_id):
 
 def update_show(request, show_id):
     # DONE
-
     show_to_edit = Show.objects.get(id=show_id)
-    show_to_edit.title = request.POST['title']
-    show_to_edit.network = request.POST['network']
-    show_to_edit.release_date = request.POST['release_date']
-    show_to_edit.description = request.POST['description']
 
-    show_to_edit.save()
-    return redirect(view_show, show_id)
+    context = {
+        'show': show_to_edit,
+    }
+    if request.method == 'POST':
+        errors = Show.objects.validate(request.POST)
+        if len(errors) < 1:
+            show_to_edit = Show.objects.get(id=show_id)
+            show_to_edit.title = request.POST['title']
+            show_to_edit.network = request.POST['network']
+            show_to_edit.release_date = request.POST['release_date']
+            show_to_edit.description = request.POST['description']
+
+            show_to_edit.save()
+            return redirect(view_show, show_id)
+        else:
+            print(errors)
+            for key, value in errors.items():
+                messages.error(request, value)
+
+    return render(request, 'edit_show.html', context)
 
 
 def delete_show(request, show_id):
