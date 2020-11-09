@@ -5,7 +5,6 @@ from django.contrib import messages
 # Create your views here.
 
 
-
 def add_show(request):
     # DONE
     # print('New Show =)')
@@ -19,9 +18,9 @@ def create_show(request):
     if request.method == 'POST':
         errors = Show.objects.validate(request.POST)
         if len(errors) < 1:
-            Show.objects.create(title=request.POST['title'], network=request.POST['network'],
-                                release_date=request.POST['release_date'], description=request.POST['description'])
-            return redirect(view_show, Show.objects.last().id)
+            last_show = Show.objects.create(title=request.POST['title'], network=request.POST['network'],
+                                            release_date=request.POST['release_date'], description=request.POST['description'])
+            return redirect(view_show, last_show.id)
         else:
             print(errors)
             for key, value in errors.items():

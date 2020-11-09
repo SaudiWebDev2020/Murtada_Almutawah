@@ -17,7 +17,7 @@ class ShowManager(models.Manager):
             show_temp = Show.objects.get(title=postData['title'])
         except Show.DoesNotExist:
             show_temp = None
-        
+
         if show_temp != None and show_temp.id != postData['id']:
             errors['uniqueTitle'] = "Title must be unique"
 
@@ -29,7 +29,7 @@ class ShowManager(models.Manager):
             errors['description'] = "Description should be at least 10 characters if it was presented"
         if datetime.now() <= entered_date:
             errors['release_date'] = "Release Date must be in the past"
-            
+
         # print(datetime.now().date())
         # print(postData['release_date'])
         # print(datetime.now() < entered_date)
