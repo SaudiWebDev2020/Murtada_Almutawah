@@ -89,7 +89,10 @@ class UserManager(models.Manager):
         # Password
 
         if postData['password'] != postData['repassword']:
-            errors['password'] = "Passwords are not match!"
+            errors['password_match'] = "Passwords are not match!"
+
+        if len(postData['password']) < 8:
+            errors['password_len'] = "Password should be at least 8 characters"
 
         return errors
 
