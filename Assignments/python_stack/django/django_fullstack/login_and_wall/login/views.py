@@ -1,4 +1,5 @@
 import bcrypt
+from django.http import request
 
 from django.shortcuts import redirect, render
 from django.contrib import messages
@@ -16,6 +17,13 @@ def index(request):
         return render(request, 'index.html', context={})
 
     return render(request, 'login.html', context={})
+
+
+def registration(request):
+    if (request.session['userid']):
+        return render(request, 'index.html', context={})
+
+    return render(request, 'registration.html', context={})
 
 
 def login(request):
@@ -42,6 +50,7 @@ def login(request):
 
 def register(request):
     if request.method == 'POST':
+        print(request.POST)
         errors = User.objects.register_validation(request.POST)
         if len(errors) < 1:
             password = request.POST['password']
@@ -51,6 +60,7 @@ def register(request):
             new_user = User.objects.create(first_name=request.POST['first_name'],
                                            last_name=request.POST['last_name'],
                                            email=request.POST['email'].lower(),
+                                           birthday=request.POST['birthday'],
                                            password=pw_hash)
 
             request.session['userid'] = new_user.id
@@ -64,7 +74,7 @@ def register(request):
             print(errors)
             for key, value in errors.items():
                 messages.error(request, value)
-    return redirect('/')
+    return redirect('/registration')
 
 
 def success(request):

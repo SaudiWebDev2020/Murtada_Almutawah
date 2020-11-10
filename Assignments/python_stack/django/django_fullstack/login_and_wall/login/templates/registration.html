@@ -24,11 +24,39 @@
             <div class="row">
                 <div class="col-6 mx-auto">
                     <div class="">
-                        <h1 class="text-center">Login</h1>
+                        <h1 class="text-center">Registration</h1>
                     </div>
                     <div class="pt-4">
-                        <form action="/login" method="post">
+                        <form action="/register" method="post">
                             {% csrf_token %}
+                            <div class="form-group row">
+                                <label class="col-4" for="first_name"
+                                    >First Name</label
+                                >
+                                <div class="col-6">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="first_name"
+                                        name="first_name"
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4" for="last_name"
+                                    >Last Name</label
+                                >
+                                <div class="col-6">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="last_name"
+                                        name="last_name"
+                                        required
+                                    />
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-4" for="email">Email</label>
                                 <div class="col-6">
@@ -39,6 +67,18 @@
                                         name="email"
                                         required
                                     />
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-4" for="birthday">Birthday</label>
+                                <div class="col-6">
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  id="birthday"
+                                  name="birthday"
+                                  required
+                                />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -54,13 +94,26 @@
                                     />
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-4" for="repassword"
+                                    >Confirm PW</label
+                                >
+                                <div class="col-6">
+                                    <input
+                                        type="password"
+                                        class="form-control"
+                                        name="repassword"
+                                        id="repassword"
+                                    />
+                                </div>
+                            </div>
                             <div class="text-center p-2">
-                                <a class="btn btn-secondary" href="/registration">Register</a>
-                                <button class="btn btn-primary">Login</button>
+                                <a class="btn btn-secondary" href="/">Cancel</a>
+                                <button class="btn btn-primary">Register</button>
                             </div>
                         </form>
                         <div class="row mt-3">
-                            {% if messages|length > 0 %}
+                            {% if messages|length > 0%}
                             <div class="alert alert-danger w-100" role="alert">
                                 <ul class="m-0">
                                     {% for message in messages %}
@@ -68,7 +121,7 @@
                                         {% if message.tags %}
                                         class="{{ message.tags }}"
                                         {% endif%} >
-                                        {{ message }}
+                                        {{ message}}
                                     </li>
                                     {% endfor %}
                                 </ul>
