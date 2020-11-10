@@ -14,7 +14,7 @@ def index(request):
     request.session.setdefault('name', '')
 
     if (request.session['userid']):
-        return render(request, 'index.html', context={})
+        return redirect('/wall')
 
     return render(request, 'login.html', context={})
 
