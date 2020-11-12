@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Favorite Book</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"
+        ></script>
+        {% load static %}
+        <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}" /> -->
+        <style>
+            .header_size {
+                width: 95%;
+                margin: 0px auto;
+            }
+
+            .line {
+                height: 2px;
+                background-color: lightgray;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light header_size">
+            <a class="navbar-brand" href="#">Welcome, {{request.session.name}}!</a>
+            <div class="mr-0 ml-auto">
+                <a class="btn btn-danger" href="/logout">Log out</a>
+            </div>
+        </nav>
+        <div class="line header_size"></div>
+        <div class="container mt-5">
+            {% if messages|length > 0 and request.session.message_flag == 'header' %}
+            <div class="row mt-3">
+                {% for message in messages %}
+                <div class="alert  alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif%} alert-dismissible fade show w-100" role="alert">
+                    <p class="m-0">{{ message }}</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+            {%endif%}
+            <div class="row">
+                <div class="col-sm-6 border-right">
+                    <h1>Add a Favorite Book</h1>
+                    <form class="col-sm-12 mx-auto pt-4" action="/books/add_book" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="userid" value="{{request.session.userid}}" />
+                        <div class="form-group row">
+                            <label class="col-3" for="title">Title</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="title" name="title" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3" for="description">Description</label>
+                            <div class="col-9 w-100">
+                                <textarea name="description" id="description" class="w-100" rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="text-center py-2">
+                            <button class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                    {% if messages|length > 0 and request.session.message_flag == 'add_book' %}
+                    <div class="alert alert-danger" role="alert">
+                        <ul class="m-0">
+                            {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}" {% endif%}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {%endif%}
+                </div>
+                <div class="col-sm-6">
+                    <h1>All books</h1>
+                    {% for book in books %}
+                    <div class="col-sm-12 my-2">
+                        <a href="/books/{{book.id}}">{{book.title}}</a>
+                        <p>(added by {{book.uploaded_by.first_name}} {{book.uploaded_by.last_name}})</p>
+                        {% if book.id in my_favorites %}
+                        <p>this is one of your favorites</p>
+                        {% else %}
+                        <form action="/books/{{book.id}}/add_to_favorite" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="book_id" value="{{book.id}}">
+                            <button class="btn btn-link">Add to Favorite</button>
+                        </form>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- jQuery library -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+        <!-- Popper -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+
+        <!-- Latest compiled and minified Bootstrap JavaScript -->
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

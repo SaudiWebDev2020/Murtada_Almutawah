@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-sm-6 p-2 border-right">
+                    <h1 class="text-center">Registration</h1>
+                    <form class="col-sm-12 mx-auto pt-4" action="/register" method="post">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label class="col-3" for="first_name">First Name</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="first_name" name="first_name" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3" for="last_name">Last Name</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="last_name" name="last_name" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3" for="email_reg">Email</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="email_reg" name="email" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3" for="password_reg">Password</label>
+                            <div class="col-9">
+                                <input type="password" class="form-control" id="password_reg" name="password" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3" for="confirm_password">Confirm PW</label>
+                            <div class="col-9">
+                                <input type="password" class="form-control" name="confirm_password" id="confirm_password" />
+                            </div>
+                        </div>
+                        <div class="text-center py-2">
+                            <button class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                    {% if messages|length > 0 and request.session.message_flag == 'register' %}
+                    <div class="alert alert-danger" role="alert">
+                        <ul class="m-0">
+                            {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}" {% endif%}>{{ message}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {%endif%}
+                </div>
+                <div class="col-sm-6 p-2">
+                    <h1 class="text-center">Login</h1>
+                    <form class="col-sm-12 mx-auto pt-4" action="/login" method="post">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label class="col-3" for="email">Email</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="email" name="email" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3" for="password">Password</label>
+                            <div class="col-9">
+                                <input type="password" class="form-control" id="password" name="password" value="" />
+                            </div>
+                        </div>
+                        <div class="text-center py-2">
+                            <button class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                    {% if messages|length > 0 and request.session.message_flag == 'login' %}
+                    <div class="alert alert-danger" role="alert">
+                        <ul class="m-0">
+                            {% for message in messages %}
+                            <li {% if message.tags %} class="{{ message.tags }}" {% endif%}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
