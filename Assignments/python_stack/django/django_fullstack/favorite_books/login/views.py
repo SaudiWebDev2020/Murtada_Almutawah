@@ -58,6 +58,7 @@ def register(request):
 
             request.session['userid'] = new_user.id
             request.session['name'] = f'{new_user.first_name}'
+            request.session['message_flag'] = 'header'
             messages.success(request, 'Successfully registered!')
             print(new_user)
             return redirect('/')

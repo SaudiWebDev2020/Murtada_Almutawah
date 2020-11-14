@@ -14,6 +14,7 @@ def get_myFavList(user_id):
     return favorite_booksList
 
 def index(request):
+    
     context = {
         'books': Book.objects.all(),
         'my_favorites': get_myFavList(request.session['userid']),
@@ -45,11 +46,16 @@ def view_book(request,book_id):
     return render(request,'view_book.html',context)
 
 def add_favorite(request,book_id):
-    book_var = Book.objects.get(id=book_id)
-    User.objects.get(id=request.session['userid']).favorite_books.add(book_var)
+    if request.method == 'POST':
+        print(request)
+        book_var = Book.objects.get(id=book_id)
+        User.objects.get(id=request.session['userid']).favorite_books.add(book_var)
+        
     return redirect(f'/books/{book_id}')
+        
 
 def remove_favorite(request,book_id):
-    book_var = Book.objects.get(id=book_id)
-    User.objects.get(id=request.session['userid']).favorite_books.remove(book_var)
+    if request.method == 'POST':
+        book_var = Book.objects.get(id=book_id)
+        User.objects.get(id=request.session['userid']).favorite_books.remove(book_var)
     return redirect(f'/books/{book_id}')
