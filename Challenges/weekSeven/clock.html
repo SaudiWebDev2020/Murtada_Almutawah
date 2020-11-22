@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        #face {
+            background-color: #f3f3f3;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 6px solid black;
+            position: relative;
+        }
+
+        #minutes, #hour, #seconds {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: top center;
+        }
+
+        #hour {
+            background-color: black;
+            height: 100px;
+            width: 8px;
+            transform: rotate(125deg);
+        }
+
+        #minutes {
+            background-color: grey;
+            height: 120px;
+            width: 4px;
+            transform: rotate(255deg);
+        }
+
+        #seconds {
+            background-color: red;
+            height: 130px;
+            width: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div id="face">
+        <div id="hour"></div>
+        <div id="minutes"></div>
+        <div id="seconds"></div>
+    </div>
+    <script>
+
+        function getSecondsSinceStartOfDay() {
+            return new Date().getSeconds() + 
+                new Date().getMinutes() * 60 + 
+                new Date().getHours() * 3600;
+        }
+
+        function drewClock(in_sec){
+            let sec = ((in_sec) * 6);
+            let min = (in_sec/60 * 6 );
+            let hour = (in_sec/3600 % 12 ) * 30;
+            
+            sec -= 180;
+            min -= 180;
+            hour  -= 180;
+            console.log(hour,min,sec);
+            document.getElementById('seconds').style.transform = `rotate(${sec}deg)`;
+            document.getElementById('minutes').style.transform = `rotate(${min}deg)`;
+            document.getElementById('hour').style.transform = `rotate(${hour}deg)`;
+        }
+        
+        setInterval( () => {
+            console.log(getSecondsSinceStartOfDay());
+            drewClock(getSecondsSinceStartOfDay());
+            
+        }, 1000);
+    </script>
+</body>
+</html>
