@@ -1,5 +1,7 @@
 
-function partition1(arr,left,right) {
+/*
+// It has issue with going with random pivot
+function partition(arr,left,right) {
     let pivot = Math.floor(Math.random()*arr.length);
     // let pivot = Math.floor((left+right)/2);
     // let pivot = left;
@@ -31,14 +33,16 @@ function partition1(arr,left,right) {
     return left;
 }
 
-function quickSort5(arr, left, right) {
+// Another answer.
+function quickSort(arr, left, right) {
     if (left < right) {
-      const index = partition(arr, left, right);
-      quickSort(arr, left, index);
-      quickSort(arr, index + 1, right);
+    const index = partition(arr, left, right);
+    quickSort(arr, left, index);
+    quickSort(arr, index + 1, right);
     }
-  }
+}
 
+*/
 
 
 function partition(arr,left,right){
