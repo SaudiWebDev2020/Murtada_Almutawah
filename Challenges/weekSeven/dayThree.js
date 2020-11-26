@@ -27,6 +27,7 @@ function combineArrays(arr1, arr2) {
 // console.log(combineArrays([2,5], [1,4,6,8]));
 // this should result in [1, 2, 4, 5, 6, 8]
 
+// my solution :: not complete =<. 
 function mergeSort(arr,length = arr.length,result=[]) {
     // your code here
     console.log(arr)
@@ -63,6 +64,7 @@ function mergeSort(arr,length = arr.length,result=[]) {
     return result;
 }
 
+// instructor approach.
 function mergeSort1(arr) {
     // your code here
     console.log(arr);
