@@ -1,3 +1,5 @@
+import ErrorPicture from '../Assets/NotTheDroids.png';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -17,13 +19,14 @@ const Results = props => {
     const [id, setId] = useState(props.id);
     const [category, setCategory] = useState(props.category);
     const [isError, setIsError] = useState()
+    const [errorMassage, setErrorMassage] = useState('')
 
     const updatePage = (id, category) => {
         setId(id);
         setCategory(category);
     }
 
-    console.log(id, category, 'From Results');
+    // console.log(id, category, 'From Results');
 
     useEffect(() => {
         setResults({});
@@ -36,12 +39,20 @@ const Results = props => {
             .catch(err => {
                 console.log(err);
                 setIsError(true);
+                if (err.response && err.response.status === 404) {
+                    setErrorMassage(`Error(${err.response.status}): Input not found`);
+                } else if (err.response && err.response.status === 429) {
+                    setErrorMassage(`Error(${err.response.status}): Too many requests. try tomorrow`);
+                } else {
+                    setErrorMassage(`Error(${err.response.status}): Another Error`);
+
+                }
             });
 
     }, [id, category]);
 
 
-    console.log(results)
+    // console.log(results)
 
     return (
         <>
@@ -49,7 +60,12 @@ const Results = props => {
             <div className='mx-5'>
 
                 {isError ?
-                    <div id="alert" class="alert alert-danger my-5" role="alert">These aren't the droids you're looking for</div>
+                    <div id="alert" className="alert alert-danger my-5 text-center" role="alert">
+                        <img src={ErrorPicture} alt="These aren't the droids you're looking for" />
+                        <p>
+                            {errorMassage}
+                        </p>
+                    </div>
                     : category === 'films' ?
                         <Films information={results} />
                         : category === 'people' ?
@@ -62,7 +78,7 @@ const Results = props => {
                                         <Starships information={results} />
                                         : category === 'vehicles' ?
                                             <Vehicles information={results} />
-                                            : ''
+                                            : ""
                 }
             </div>
         </>
