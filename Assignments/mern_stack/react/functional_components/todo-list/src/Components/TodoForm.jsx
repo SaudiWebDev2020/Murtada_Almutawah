@@ -17,10 +17,10 @@ const TodoForm = props => {
   return (
       <form onSubmit={addTodo}>
         <div className="row my-2">
-          <div className="form-group col-md-5 ml-auto">
+          <div className="form-group col-9 ml-auto">
               <input className="form-control" type="text" placeholder="Write what todo" onChange={e => setTodo(e.target.value)} value={todo} />
             </div>
-            <div className="col-md-1 ml-2 mr-auto">
+            <div className="col-2 mr-auto">
               <button className="btn btn-primary">Add</button>
             </div>
           </div>
