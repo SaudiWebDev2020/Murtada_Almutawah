@@ -1,10 +1,15 @@
 import "./App.css";
 import Main from "./Views/Main";
+import ProductView from "./Views/ProductView";
+import { Router } from "@reach/router";
 
 function App() {
   return (
     <div className="container">
-      <Main />
+      <Router>
+        <Main path="/" />
+        <ProductView path="/:_id" />
+      </Router>
     </div>
   );
 }
