@@ -33,3 +33,24 @@ module.exports.createProduct = (req, res) => {
       console.log(err);
     });
 };
+
+module.exports.updateProduct = (req, res) => {
+  // console.log(req.body);
+  // console.log(req.params);
+  Product.findOneAndUpdate({ _id: req.params._id }, req.body, { new: true, runValidators: true })
+    .then((newProduct) => res.json({ status: "ok", newProduct }))
+    .catch((err) => {
+      res.json({ message: "Something went wrong", err });
+      console.log(err);
+    });
+};
+
+module.exports.remove = (req, res) => {
+  console.log(req.params);
+  Product.deleteOne({ _id: req.params._id })
+    .then((product) => res.json({ status: "ok", product }))
+    .catch((err) => {
+      res.json({ message: "Something went wrong", err });
+      console.log(err);
+    });
+};

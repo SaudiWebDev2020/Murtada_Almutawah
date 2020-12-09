@@ -6,6 +6,7 @@ import ProductList from '../Components/ProductList'
 const Main = () => {
   const [message, setMessage] = useState("Loading...")
   const [products, setProducts] = useState([])
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     axios.get("http://localhost:8000/api")
@@ -20,9 +21,10 @@ const Main = () => {
       .then(res => {
         // console.log(res.data);
         setProducts(res.data.allProducts)
+        setLoaded(true);
         // console.log(products);
       })
-  }, []);
+  }, [loaded]);
 
   const updateList = product => {
     // console.log([product, ...products]);
@@ -33,9 +35,9 @@ const Main = () => {
     <div className="my-2">
       <h2 className="text-center">Product Manager</h2>
       <p className="text-center">Message from the backend: {message}</p>
-      <ProductForm updateList={updateList} />
+      <ProductForm operation="create" updateList={updateList} />
       <hr />
-      <ProductList productList={products} />
+      {loaded && <ProductList productList={products} LoadQ={setLoaded} />}
     </div>
   )
 }
