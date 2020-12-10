@@ -25,7 +25,8 @@ const Main = () => {
           setErr(res.data.err.errors)
         } else {
           reset();
-          setProducts([...products, product])
+          // console.log(res.data.newProduct)
+          setProducts([...products, res.data.newProduct])
         }
       })
       .catch(err => {
