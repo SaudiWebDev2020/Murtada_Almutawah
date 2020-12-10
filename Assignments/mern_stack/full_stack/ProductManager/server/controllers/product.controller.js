@@ -35,10 +35,8 @@ module.exports.createProduct = (req, res) => {
 };
 
 module.exports.updateProduct = (req, res) => {
-  // console.log(req.body);
-  // console.log(req.params);
   Product.findOneAndUpdate({ _id: req.params._id }, req.body, { new: true, runValidators: true })
-    .then((newProduct) => res.json({ status: "ok", newProduct }))
+    .then((updatedProduct) => res.json({ status: "ok", updatedProduct }))
     .catch((err) => {
       res.json({ message: "Something went wrong", err });
       console.log(err);

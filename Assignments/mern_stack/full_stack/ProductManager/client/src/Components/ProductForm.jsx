@@ -1,43 +1,31 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import axios from 'axios';
 
 const ProductForm = props => {
-  const [title, setTitle] = useState('')
-  const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState('')
-  const [errors, setErrors] = useState({})
+  const { initialTitle, initialPrice, initialDescription, initialErrors, onSubmitCall } = props
 
+  const [title, setTitle] = useState(initialTitle) // props
+  const [price, setPrice] = useState(initialPrice); // props 
+  const [description, setDescription] = useState(initialDescription) // props
+  const [errors, setErrors] = useState(initialErrors) // props 
 
-  const addProduct = e => {
-    setErrors({})
-    console.log('print add')
+  const onSubmitAction = e => {
     e.preventDefault();
     const product = { title, price, description }
-    // console.log(product)
-    axios.post('http://localhost:8000/api/product/new', product)
-      .then(res => {
-        console.log(res);
+    onSubmitCall(product, setErrors, reset)
+  }
 
-        if (res.data.err) {
-          setErrors(res.data.err.errors)
-        } else {
-          props.updateList(res.data.newProduct)
-          setTitle('');
-          setPrice(0);
-          setDescription('');
-        }
-      })
-      .catch(err => {
-        console.error(err)
-      });
-
+  const reset = () => {
+    setTitle('');
+    setPrice(0);
+    setDescription('');
+    setErrors({})
   }
 
   return (
     <div className="row my-3">
       <div className="col-sm-8 offset-sm-2">
-        <form onSubmit={addProduct}>
+        <form onSubmit={onSubmitAction}>
           <div className="form-group">
             <label>Title</label>
             <input type="text" className="form-control" name="title" id="title" onChange={e => setTitle(e.target.value)} value={title} />
@@ -56,7 +44,7 @@ const ProductForm = props => {
             <p className="text-danger">{errors.description ? errors.description.message : ''}</p>
           </div>
 
-          <input type="submit" value="Add Product" className="btn btn-outline-success btn-block mt-4" />
+          <input type="submit" value="Submit" className="btn btn-outline-success btn-block mt-4" />
 
         </form>
       </div>
