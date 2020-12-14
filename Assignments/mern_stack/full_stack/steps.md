@@ -67,7 +67,7 @@
 1. Create a react client
 
    ```bash
-   npx bcreate-react-app client
+   npx create-react-app client
    ```
 
 2. Install dependencies
