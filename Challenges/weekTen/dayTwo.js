@@ -23,6 +23,7 @@ console.log(bin2dec("0b111111111111111111111111111111111111111111111111111111111
 function hex2dec(str) {
   let res = 0;
   // your code here
+  str = str.toUpperCase();
   count = 0;
   for (let i = str.length - 1; i >= 0; i--) {
     let value = 0;
@@ -42,7 +43,7 @@ function hex2dec(str) {
         ? (value = 14)
         : str[i] === "F"
         ? (value = 15)
-        : console.log(str[i]);
+        : "";
     } else {
       value = str[i];
     }
@@ -54,6 +55,33 @@ function hex2dec(str) {
   return res;
 }
 
-// console.log(hex2dec("0xE3"));
-// console.log(hex2dec("0xFF"));
-// console.log(hex2dec("0xFFFFFFFFFFFFFFFF"));
+console.log(hex2dec("0x3A"));
+console.log(hex2dec("0xE3"));
+console.log(hex2dec("0xFF"));
+console.log(hex2dec("0xFFFFFFFFFFFFFFFF"));
+
+// dec to hex
+
+hexValue = "0123456789abcdef";
+
+function dec2hex(num) {
+  let res = "0x";
+
+  let power = Math.floor(Math.log(num) / Math.log(16));
+
+  while (power > 0) {
+    let val = Math.floor(num / Math.pow(16, power));
+    res += hexValue[val];
+    num %= Math.pow(16, power);
+    power--;
+  }
+
+  res += num;
+
+  return res;
+}
+
+console.log(dec2hex(1000));
+console.log(dec2hex(4096));
+console.log(hex2dec(dec2hex(4096)));
+console.log(hex2dec(dec2hex(1000)));
