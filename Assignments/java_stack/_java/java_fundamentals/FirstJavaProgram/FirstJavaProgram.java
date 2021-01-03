@@ -1,5 +1,3 @@
-package _java.java_fundamentals.FirstJavaProgram;
-
 public class FirstJavaProgram {
   public static void main(String[] args) {
     String name = "Coding Dojo";
