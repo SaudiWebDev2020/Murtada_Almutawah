@@ -1,10 +1,10 @@
 package part1;
 
 public class Human {
+	private int health;
 	private int strength;
 	private int stealth;
 	private int intelligence;
-	private int health;
 	
 	public Human () {
 		this.setStrength(3);
@@ -49,5 +49,8 @@ public class Human {
 		this.health = health;
 	}
 	
+	public void stat() {
+		System.out.println(String.format("Health: %d, Strength: %d, Stealth: %d, Intelligence: %d", this.getHealth(),this.getStrength(),this.getStealth(),this.getIntelligence()));
+	}
 	
 }
