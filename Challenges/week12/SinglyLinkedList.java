@@ -1,3 +1,5 @@
+// import org.w3c.dom.Node;
+
 public class SinglyLinkedList {
 	public Node head;
 
@@ -104,6 +106,47 @@ public class SinglyLinkedList {
 
 			System.out.println(str + "]");
 		}
+	}
+
+	public void createLoop(int value, int linkedVal) {
+		Node loopStarter = head;
+		while (loopStarter.next != null) {
+			loopStarter = loopStarter.next;
+		}
+
+		Node loopLink = head;
+		while (loopLink != null && loopLink.value != linkedVal) {
+			loopLink = loopLink.next;
+		}
+
+		loopStarter.next = loopLink;
+	}
+	
+	public boolean hasLoop() {
+		Boolean loop = false;
+		if (head == null) {
+			return loop;
+		} else if (head.next == null){
+			return loop;
+		} else {
+			Node loopStarter = head;
+			Node loopLink = head.next;
+			
+			while (loopStarter != null && loopLink != null) {
+				if (loopStarter.value == loopLink.value) {
+					return true;
+				}
+
+				loopStarter = loopStarter.next;
+				loopLink = loopLink.next.next;
+			}
+			return loop;
+
+		}
+
+
+
+
 	}
 
 }
