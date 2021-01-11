@@ -1,0 +1,21 @@
+.time{
+	color: blue;
+}
+
+.date{
+	color: green;
+}
+
+.container{
+	text-align: center;
+	padding: 20px;
+    margin: 200px;
+}
+
+.container a {
+	margin: 20px;
+}
+
+.half{
+	width: 5rem;
+}
