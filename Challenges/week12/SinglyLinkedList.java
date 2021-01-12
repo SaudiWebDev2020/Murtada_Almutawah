@@ -108,7 +108,7 @@ public class SinglyLinkedList {
 		}
 	}
 
-	public void createLoop(int value, int linkedVal) {
+	public void createLoop(int linkedVal) {
 		Node loopStarter = head;
 		while (loopStarter.next != null) {
 			loopStarter = loopStarter.next;
@@ -121,17 +121,17 @@ public class SinglyLinkedList {
 
 		loopStarter.next = loopLink;
 	}
-	
+
 	public boolean hasLoop() {
 		Boolean loop = false;
 		if (head == null) {
 			return loop;
-		} else if (head.next == null){
+		} else if (head.next == null) {
 			return loop;
 		} else {
 			Node loopStarter = head;
 			Node loopLink = head.next;
-			
+
 			while (loopStarter != null && loopLink != null) {
 				if (loopStarter.value == loopLink.value) {
 					return true;
@@ -144,9 +144,37 @@ public class SinglyLinkedList {
 
 		}
 
+	}
 
+	public void breakLoop() {
+		if (hasLoop()) {
+			Node walker = head;
+			Node runner = head.next;
+			Node goalie = null;
 
+			while (walker != null && runner != null) {
+				if (walker.next == goalie) {
+					// System.out.println("Walker " + walker.value);
+					// System.out.println("Runner " + runner.value);
+					// System.out.println("Goalie " + goalie.value);
+					// System.out.println("Break !!");
 
+					walker.next = null;
+					break;
+				}
+
+				if (walker == runner) {
+					if (goalie != null) {
+						goalie = goalie.next;
+					} else {
+						goalie = head;
+					}
+				}
+
+				walker = walker.next;
+				runner = runner.next.next;
+			}
+		}
 	}
 
 }
