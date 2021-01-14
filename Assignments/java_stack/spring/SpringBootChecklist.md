@@ -161,7 +161,7 @@ Check our server at `http://localhost:8080`
 
 * Go to `/src/main/java/` and add a new package inside your project example `com.username.first.models`
 
-* Inside the new `...controllers` package create a new `Java Class` called `Book`
+* Inside the new `...models` package create a new `Java Class` called `Book`
 
 * In our `Book.java` file add the following...
 
@@ -292,7 +292,7 @@ Check our server at `http://localhost:8080`
     ```java
     // ...
     import org.springframework.stereotype.Service;
-    import com.codingdojo.mvc.models.Book;
+    import com.username.mvc.models.Book;
     @Service
     public class BookService {
         // adding the book repository as a dependency
