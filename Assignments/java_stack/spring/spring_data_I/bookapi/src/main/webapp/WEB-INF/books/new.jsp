@@ -36,8 +36,8 @@
             <form:input type="number" path="numberOfPages" class="form-control"/>
             <form:errors path="numberOfPages" class="text-danger"/>     
         </p>    
-        <input type="submit" value="Submit" class="btn btn-primary"/>
-        <a href="/books" class="btn btn-danger float-right">cancel</a>
+        <a href="/books" class="btn btn-danger">cancel</a>
+        <input type="submit" value="Submit" class="btn btn-primary float-right"/>
     </form:form>
 </div>
 

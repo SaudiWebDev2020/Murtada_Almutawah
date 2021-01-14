@@ -49,6 +49,12 @@ public class BookService {
     return null;
   }
 
+  public Book updateBook(Book book) {
+    // save is used both to create new entries and update existing
+    return this.updateBook(book.getId(), book.getTitle(), book.getDescription(), book.getLanguage(),
+        book.getNumberOfPages());
+  }
+
   public String deleteBook(Long id) {
     if (bookRepository.findById(id).isPresent()) {
       bookRepository.deleteById(id);
