@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/books")
-public class BookController {
+public class BookApi {
 
   private final BookService bookService;
 
-  public BookController(BookService bookService) {
+  public BookApi(BookService bookService) {
     this.bookService = bookService;
   }
 
@@ -53,8 +53,8 @@ public class BookController {
   }
 
   @DeleteMapping("/{id}")
-  public void remove(@PathVariable("id") Long id) {
-    bookService.deleteBook(id);
+  public String remove(@PathVariable("id") Long id) {
+    return bookService.deleteBook(id);
   }
 
 }

@@ -49,9 +49,12 @@ public class BookService {
     return null;
   }
 
-  public void deleteBook(Long id) {
+  public String deleteBook(Long id) {
     if (bookRepository.findById(id).isPresent()) {
       bookRepository.deleteById(id);
+      return "Success";
     }
+
+    return "No data is found to be deleted";
   }
 }
