@@ -3,6 +3,22 @@
 
 ## Step1: Start Project
 
+1. Create a workspace
+2. Inside of `Package Explorer` right click -> new -> Spring Starter Project
+3. Inside of the Pop-up we need to:
+    * Create a unique project name, example `first`
+    * Make sure the type is `Maven`
+    * Set Java Version to `11`
+    * Set Packaging to `War`
+    * Artifact name as project name `first`
+    * Group name convention... `com.username` <-- your username here
+    * Package name convention... `com.username.first` <-- your project name here!
+4. Once these are set choose `Next`
+5. Select/Search for the following packages:
+    * Spring Boot DevTools
+    * Spring Web
+6. Last, click `Finish`
+
 ## Step2: Add Configuration
 
 ### Packages
@@ -145,7 +161,7 @@
   mkdir controllers models repositories services
   ```
 
-### jsp file configs
+## Step3: Views (jsp files)
 
 * Java
 
@@ -194,4 +210,138 @@
     </head>
     <body></body>
   </html>
+  ```
+
+## Step4: Models
+
+* Table
+
+  ```java
+  @Entity
+  @Table(name="categories")
+  public class Category {
+  }
+  ```
+
+* Id
+
+  ```java
+  // code ... 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  // code ...
+  ```
+
+* Strings
+
+  ```java
+  // code ... 
+  @Size(min=1, max=20)
+  private String name;
+  // code ...
+  ```
+
+* Numbers
+
+  ```java
+  // code ... 
+  @Min(0)
+  @Max(150)
+  private int age;
+
+  @Min(0)
+  private float price;
+  // code ...
+  ```
+
+* One to One
+
+  ```java
+  // code ... // One End (License.java)
+  @NotNull
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "person_id")
+  private Person person;
+
+  // Other End (Person.java)
+  @OneToOne(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  private License license;
+
+  // code ...
+  ```
+
+* One to Many
+
+  ```java
+  // code ... // One Side !
+  @OneToMany(mappedBy = "dojo", fetch = FetchType.LAZY)
+  private List<Ninja> ninjas;
+  // code ...
+  ```
+
+* Many to One
+
+  ```java
+  // code ... // Many Size
+  @NotNull
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "dojo_id")
+  private Dojo dojo;
+  // code ...
+  ```
+
+* Many to Many
+
+  ```java
+  // code ... First End (Product.java)
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "categories_products", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+  private List<Category> categories;
+
+  // Middle ware (Optional) (CategoryProduct.java (Middle Table))
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "product_id")
+  private Product product;
+
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "category_id")
+  private Category category;
+
+  // code ... The other End (Category.java)
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "categories_products", joinColumns = @JoinColumn(name = "category_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+  private List<Product> products;
+
+  // code ...
+  ```
+
+* Timestamps
+
+  ```java
+  // code ... 
+  @Column(updatable = false)
+  private Date createdAt;
+  private Date updatedAt;
+
+  // code ...
+
+  @PrePersist
+  protected void onCreate() {
+    this.createdAt = new Date();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    this.updatedAt = new Date();
+  }
+  // code ...
+  ```
+
+## Step5: Controllers
+
+* For using url parameters
+  ```java
+
+
   ```
