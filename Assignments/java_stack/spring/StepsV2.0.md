@@ -30,11 +30,17 @@
     <groupId>org.apache.tomcat.embed</groupId>
     <artifactId>tomcat-embed-jasper</artifactId>
   </dependency>
+  ```
+
+* Use C & Form tags
+
+  ```xml
   <dependency>
     <groupId>javax.servlet</groupId>
     <artifactId>jstl</artifactId>
     </dependency>
   ```
+
 
 * Bootstrap
 
@@ -238,6 +244,7 @@
   ```java
   // code ... 
   @Size(min=1, max=20)
+  @NotEmpty()
   private String name;
   // code ...
   ```
@@ -338,10 +345,48 @@
   // code ...
   ```
 
-## Step5: Controllers
+## Step5: Repositories
+
+* Create it as interface
+
+* Extend CrudRepository
+
+  ```java
+  public interface Repository extends CrudRepository<License, Long> {
+  public List<License> findAll();
+  }
+  ```
+
+## Step6: Controllers
+
+* First Route
+  
+  ```java
+    @RequestMapping("/")
+      public String index() {
+        return "index.jsp";
+      }
+  ```
 
 * For using url parameters
+  
   ```java
+  @RequestMapping("/{id}")
+  public String viewPerson(@PathVariable("id") Long id, Model model) {
+    model.addAttribute("person", this.personService.getOne(id));
+    return "/persons/view.jsp";
+  }
+  ```
 
-
+* For using ModelAttribute
+  
+  ```java
+  @RequestMapping(value = "/categories/new", method = RequestMethod.POST)
+  public String createCategory(@Valid @ModelAttribute("category") Category category, BindingResult result) {
+    if (result.hasErrors()) {
+      return "categories/new.jsp";
+    }
+    categoryService.create(category);
+    return "redirect:/";
+  }
   ```
