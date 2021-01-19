@@ -41,7 +41,6 @@
     </dependency>
   ```
 
-
 * Bootstrap
 
   ```xml
@@ -78,6 +77,16 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-validation</artifactId>
   </dependency>  
+  ```
+
+* BCrypt
+
+  ```xml
+  <dependency>
+      <groupId>org.mindrot</groupId>
+      <artifactId>jbcrypt</artifactId>
+      <version>0.4</version>
+  </dependency>
   ```
 
 * __All__
@@ -227,6 +236,15 @@
   @Table(name="categories")
   public class Category {
   }
+  ```
+
+* Transient
+
+  ```java
+  // code ... 
+  @Transient
+  private String passwordConfirmation;
+  // code ...
   ```
 
 * Id
