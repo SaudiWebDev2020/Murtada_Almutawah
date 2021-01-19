@@ -45,9 +45,7 @@ public class HomeController {
     if ((int) session.getAttribute("balance") < -100) {
       return "redirect:/prison";
     }
-
     // System.out.println(session.getAttribute("activities"));
-
     model.addAttribute("balance", session.getAttribute("balance"));
     model.addAttribute("places", getPlaces());
     model.addAttribute("activities", session.getAttribute("activities"));
