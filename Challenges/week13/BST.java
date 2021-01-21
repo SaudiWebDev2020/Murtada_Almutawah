@@ -112,14 +112,43 @@ class BST {
     return size(node.left) + size(node.right) + 1;
   }
 
-  public int length() {
-    return length(this.root);
+  public int height() {
+    return height(this.root);
   }
 
-  private int length(BTNode node) {
+  private int height(BTNode node) {
     if (node == null) {
       return 0;
     }
-    return Math.max(1 + size(node.left), 1 + size(node.right));
+    return 1 + Math.max(height(node.left), height(node.right));
   }
+
+  public boolean isBalanced() {
+    return isBalanced(this.root);
+  }
+
+  private boolean isBalanced(BTNode node) {
+    if (node == null) {
+      return true;
+    } else {
+      int rHeight = height(node.right);
+      int lHeight = height(node.left);
+      if (Math.abs(rHeight - lHeight) > 1) {
+        System.out.println(node.value + " isn't balanced");
+        return false;
+      } else {
+        System.out.println(node.value + " is balanced");
+        return isBalanced(node.right) && isBalanced(node.left);
+      }
+    }
+
+  }
+
+  private void lRotate(BTNode node) {
+    System.out.println(node.value + " shall be on right" + node.right.value + "  should be on top");
+
+    return;
+  }
+
+  // balance & full & complacence
 }

@@ -16,7 +16,7 @@ class d02 {
     System.out.println(binarySearchTree.max());
     System.out.println(binarySearchTree.contains(100));
     System.out.println(binarySearchTree.size());
-    System.out.println(binarySearchTree.length());
+    System.out.println(binarySearchTree.height());
 
     System.out.println("********");
 
@@ -26,7 +26,7 @@ class d02 {
     System.out.println(binarySearchEmpty.max());
     System.out.println(binarySearchEmpty.contains(100));
     System.out.println(binarySearchEmpty.size());
-    System.out.println(binarySearchEmpty.length());
+    System.out.println(binarySearchEmpty.height());
 
   }
 }

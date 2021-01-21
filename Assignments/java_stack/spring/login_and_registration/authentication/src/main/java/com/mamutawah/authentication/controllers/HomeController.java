@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import com.mamutawah.authentication.models.User;
 import com.mamutawah.authentication.services.UserService;
+import com.mamutawah.authentication.validator.UserValidator;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 
   private final UserService userService;
+  // NEW
+  private final UserValidator userValidator;
 
-  public HomeController(UserService userService) {
+  // NEW
+  public HomeController(UserService userService, UserValidator userValidator) {
     this.userService = userService;
+    this.userValidator = userValidator;
   }
 
   @RequestMapping("/registration")
@@ -48,6 +53,7 @@ public class HomeController {
   public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult result, HttpSession session) {
     // if result has errors, return the registration page (don't worry about
     // validations just now)
+    userValidator.validate(user, result);
     if (result.hasErrors()) {
       return "registrationPage.jsp";
     }

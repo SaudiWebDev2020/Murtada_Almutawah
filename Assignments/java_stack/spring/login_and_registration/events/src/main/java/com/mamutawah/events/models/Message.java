@@ -1,43 +1,48 @@
-package com.mamutawah.authentication.models;
+package com.mamutawah.events.models;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "messages")
+public class Message {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "Email must be entered")
-  @Email(message = "Email must be valid")
-  private String email;
+  @NotEmpty
+  private String comment;
 
-  @Size(min = 5, message = "Password must be greater than 5 characters")
-  private String password;
-  @Transient
-  private String passwordConfirmation;
+  // DONE - Creator (Host) many message to one User
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  private User writer;
+
+  // DONE - Linked Event - Many message to one event
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "event_id")
+  private Event event;
+
   @Column(updatable = false)
   private Date createdAt;
   private Date updatedAt;
 
-  public User() {
+  public Message() {
   }
 
-  // other getters and setters removed for brevity
   @PrePersist
   protected void onCreate() {
     this.createdAt = new Date();
@@ -63,45 +68,45 @@ public class User {
   }
 
   /**
-   * @return String return the email
+   * @return String return the comment
    */
-  public String getEmail() {
-    return email;
+  public String getComment() {
+    return comment;
   }
 
   /**
-   * @param email the email to set
+   * @param comment the comment to set
    */
-  public void setEmail(String email) {
-    this.email = email;
+  public void setComment(String comment) {
+    this.comment = comment;
   }
 
   /**
-   * @return String return the password
+   * @return User return the writer
    */
-  public String getPassword() {
-    return password;
+  public User getWriter() {
+    return writer;
   }
 
   /**
-   * @param password the password to set
+   * @param writer the writer to set
    */
-  public void setPassword(String password) {
-    this.password = password;
+  public void setWriter(User writer) {
+    this.writer = writer;
   }
 
   /**
-   * @return String return the passwordConfirmation
+   * @return Event return the event
    */
-  public String getPasswordConfirmation() {
-    return passwordConfirmation;
+  public Event getEvent() {
+    return event;
   }
 
   /**
-   * @param passwordConfirmation the passwordConfirmation to set
+   * @param event the event to set
    */
-  public void setPasswordConfirmation(String passwordConfirmation) {
-    this.passwordConfirmation = passwordConfirmation;
+  public void setEvent(Event event) {
+    this.event = event;
   }
 
   /**
